@@ -110,6 +110,42 @@ nav a:not(.nav-contact):hover {
   color: var(--green-dark);
 }
 
+.language-toggle {
+  display: inline-flex;
+  gap: 0.42rem;
+  align-items: center;
+  justify-content: center;
+  min-width: 4rem;
+  height: 2.25rem;
+  padding: 0 0.72rem;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.language-toggle:hover {
+  color: var(--paper);
+  background: var(--forest);
+  border-color: var(--forest);
+}
+
+.language-toggle:focus-visible {
+  outline: 2px solid var(--green-dark);
+  outline-offset: 3px;
+}
+
+.language-toggle-icon {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+}
+
 .nav-contact {
   padding: 0.55rem 1rem;
   color: var(--paper);
@@ -145,7 +181,7 @@ nav a:not(.nav-contact):hover {
   letter-spacing: 0.14em;
 }
 
-.eyebrow span {
+.eyebrow > span:first-child {
   display: inline-block;
   width: 2.5rem;
   height: 2px;
@@ -493,7 +529,7 @@ nav a:not(.nav-contact):hover {
   font-weight: 700;
 }
 
-.projects-heading a span {
+.projects-heading a span:last-child {
   margin-left: 0.35rem;
 }
 
@@ -571,7 +607,7 @@ nav a:not(.nav-contact):hover {
   color: var(--green);
 }
 
-.contact .eyebrow span {
+.contact .eyebrow > span:first-child {
   background: var(--green);
 }
 
@@ -667,6 +703,15 @@ footer p {
 
   nav a:not(.nav-contact) {
     display: none;
+  }
+
+  nav {
+    gap: 0.55rem;
+  }
+
+  .nav-contact {
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
   }
 
   .hero {
