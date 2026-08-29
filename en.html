@@ -1,48 +1,47 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
-      id="meta-description"
       name="description"
-      content="Wong Je 的个人主页，关注机器人感知、事件视觉、6D 位姿估计与智能抓取。"
+      content="Wong Je's personal website, focused on robot perception, event-based vision, 6D pose estimation, and intelligent grasping."
     />
     <meta name="theme-color" content="#0b1512" />
-    <meta property="og:title" content="Wong Je — Robotics & Perception" />
+    <meta property="og:title" content="Wong Je — Robotics &amp; Perception" />
     <meta
       property="og:description"
       content="Robotics, event-based vision, 6D pose estimation and intelligent grasping."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://wongjemoment.github.io/" />
-    <link rel="canonical" href="https://wongjemoment.github.io/" />
+    <meta property="og:url" content="https://wongjemoment.github.io/en.html" />
+    <link rel="canonical" href="https://wongjemoment.github.io/en.html" />
     <link rel="alternate" hreflang="zh-CN" href="https://wongjemoment.github.io/" />
     <link rel="alternate" hreflang="en" href="https://wongjemoment.github.io/en.html" />
     <link rel="alternate" hreflang="x-default" href="https://wongjemoment.github.io/" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://avatars.githubusercontent.com" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Wong Je — 机器人与感知</title>
+    <title>Wong Je — Robotics &amp; Perception</title>
   </head>
   <body>
-    <a class="skip-link" href="#main" data-i18n="skipLink">跳到主要内容</a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Wong Je 首页" data-i18n-aria-label="brandLabel">
+      <a class="brand" href="#top" aria-label="Wong Je home">
         <span class="brand-mark" aria-hidden="true">WJ</span>
         <span>Wong Je</span>
       </a>
 
-      <nav aria-label="主要导航" data-i18n-aria-label="navLabel">
-        <a href="#about" data-i18n="nav.about">关于</a>
-        <a href="#focus" data-i18n="nav.focus">方向</a>
-        <a href="#projects" data-i18n="nav.projects">项目</a>
-        <a class="nav-contact" href="https://github.com/WongJeMoment" data-i18n="nav.contact">联系我</a>
-        <a class="language-switch" href="en.html" aria-label="Switch to English">
-          <span class="language-switch-current">中</span>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a href="#projects">Projects</a>
+        <a class="nav-contact" href="https://github.com/WongJeMoment">Contact</a>
+        <a class="language-switch" href="index.html" aria-label="切换到中文">
+          <span class="language-switch-current" lang="en">EN</span>
           <span class="language-switch-divider" aria-hidden="true"></span>
-          <span class="language-switch-target" lang="en">EN</span>
+          <span class="language-switch-target" lang="zh-CN">中</span>
         </a>
       </nav>
     </header>
@@ -52,16 +51,17 @@
         <div class="hero-copy">
           <p class="eyebrow"><span></span> ROBOTICS · VISION · INTELLIGENCE</p>
           <h1>
-            <span data-i18n="hero.titleLineOne">让机器人</span><br />
-            <em data-i18n="hero.titleLineTwo">看见、理解、行动。</em>
+            <span>Helping robots</span><br />
+            <em>see, understand, and act.</em>
           </h1>
           <p class="hero-intro">
-            <span data-i18n="hero.introBefore">你好，我是</span>
-            <strong>Wong Je</strong><span data-i18n="hero.introAfter">。我关注机器人感知、事件视觉、6D 位姿估计与智能抓取，并持续探索从算法原型到实时系统的完整路径。</span>
+            Hi, I'm <strong>Wong Je</strong>. I work on robot perception, event-based vision,
+            6D pose estimation, and intelligent grasping—exploring the full path from
+            algorithm prototypes to real-time systems.
           </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="#projects" data-i18n="hero.viewProjects">查看项目</a>
+            <a class="button button-primary" href="#projects">View projects</a>
             <a class="button button-secondary" href="https://github.com/WongJeMoment">
               GitHub
               <span aria-hidden="true">↗</span>
@@ -70,21 +70,21 @@
 
           <dl class="quick-facts">
             <div>
-              <dt data-i18n="facts.locationLabel">所在地</dt>
-              <dd data-i18n="facts.locationValue">中国上海</dd>
+              <dt>Location</dt>
+              <dd>Shanghai, China</dd>
             </div>
             <div>
-              <dt data-i18n="facts.focusLabel">当前方向</dt>
-              <dd data-i18n="facts.focusValue">具身智能</dd>
+              <dt>Current focus</dt>
+              <dd>Embodied AI</dd>
             </div>
             <div>
-              <dt data-i18n="facts.toolsLabel">常用工具</dt>
+              <dt>Build with</dt>
               <dd>Python · PyTorch</dd>
             </div>
           </dl>
         </div>
 
-        <div class="hero-visual" aria-label="Wong Je 的头像" data-i18n-aria-label="avatarLabel">
+        <div class="hero-visual" aria-label="Portrait of Wong Je">
           <div class="orbit orbit-one"></div>
           <div class="orbit orbit-two"></div>
           <div class="avatar-frame">
@@ -98,29 +98,37 @@
           <div class="status-card">
             <span class="status-dot"></span>
             <div>
-              <small data-i18n="status.label">正在探索</small>
-              <strong data-i18n="status.value">机器人学习</strong>
+              <small>NOW EXPLORING</small>
+              <strong>Robot Learning</strong>
             </div>
           </div>
         </div>
       </section>
 
       <section class="section about" id="about">
-        <div class="section-label" data-i18n="about.label">01 / 关于</div>
+        <div class="section-label">01 / ABOUT</div>
         <div class="about-copy">
-          <h2 data-i18n="about.title">把感知变成可靠的机器人能力。</h2>
+          <h2>Turning perception into reliable robotic capability.</h2>
           <div class="about-columns">
-            <p data-i18n="about.paragraphOne">我的项目聚焦于机器人如何从复杂环境中获取信息：从事件相机的低延迟视觉，到物体位姿估计、目标跟踪与抓取决策。</p>
-            <p data-i18n="about.paragraphTwo">我喜欢动手构建完整系统，在仿真中快速验证想法，再把算法推进到实时运行。这里记录我的开源实验、研究原型与持续学习过程。</p>
+            <p>
+              My projects explore how robots acquire information from complex environments—from
+              the low-latency vision of event cameras to object pose estimation, target tracking,
+              and grasp planning.
+            </p>
+            <p>
+              I enjoy building complete systems: validating ideas quickly in simulation, then
+              advancing the algorithms toward real-time operation. This site documents my
+              open-source experiments, research prototypes, and ongoing learning.
+            </p>
           </div>
         </div>
       </section>
 
       <section class="section focus" id="focus">
-        <div class="section-label" data-i18n="focus.label">02 / 方向</div>
+        <div class="section-label">02 / FOCUS</div>
         <div class="section-heading">
-          <h2 data-i18n="focus.title">研究与实践方向</h2>
-          <p data-i18n="focus.intro">围绕机器人与真实世界交互所需的感知、估计和控制能力。</p>
+          <h2>Research &amp; practice</h2>
+          <p>Perception, estimation, and control for robots interacting with the real world.</p>
         </div>
 
         <div class="focus-grid">
@@ -128,28 +136,37 @@
             <span class="card-index">01</span>
             <div class="focus-icon" aria-hidden="true">◉</div>
             <h3>Event-based Vision</h3>
-            <p data-i18n="focus.eventVision">利用事件相机的高时间分辨率与低延迟特性，探索动态场景中的检测、跟踪和抓取。</p>
+            <p>
+              Using the high temporal resolution and low latency of event cameras to explore
+              detection, tracking, and grasping in dynamic scenes.
+            </p>
           </article>
           <article class="focus-card featured">
             <span class="card-index">02</span>
             <div class="focus-icon" aria-hidden="true">⌁</div>
             <h3>Robot Perception</h3>
-            <p data-i18n="focus.robotPerception">研究 6D 位姿估计、RGB-D 感知与空间理解，让机器人获得可用于行动的环境表示。</p>
+            <p>
+              Studying 6D pose estimation, RGB-D perception, and spatial understanding to give
+              robots actionable representations of their surroundings.
+            </p>
           </article>
           <article class="focus-card">
             <span class="card-index">03</span>
             <div class="focus-icon" aria-hidden="true">◇</div>
-            <h3>Learning & Simulation</h3>
-            <p data-i18n="focus.learningSimulation">通过物理仿真和强化学习训练机器人技能，并关注从策略验证到真实部署的落差。</p>
+            <h3>Learning &amp; Simulation</h3>
+            <p>
+              Training robotic skills through physics simulation and reinforcement learning,
+              with an eye on the gap between policy validation and real-world deployment.
+            </p>
           </article>
         </div>
       </section>
 
       <section class="section projects" id="projects">
-        <div class="section-label" data-i18n="projects.label">03 / 代表项目</div>
+        <div class="section-label">03 / SELECTED WORK</div>
         <div class="section-heading projects-heading">
-          <h2 data-i18n="projects.title">代表项目</h2>
-          <a href="https://github.com/WongJeMoment?tab=repositories"><span data-i18n="projects.viewAll">全部项目</span> <span>↗</span></a>
+          <h2>Selected projects</h2>
+          <a href="https://github.com/WongJeMoment?tab=repositories">View all projects <span>↗</span></a>
         </div>
 
         <div class="project-list">
@@ -157,7 +174,10 @@
             <span class="project-number">01</span>
             <div class="project-main">
               <h3>Robot Catching Boxes</h3>
-              <p data-i18n="projects.catchingBoxes">基于 Isaac Lab 与强化学习的 Unitree G1 双手接箱和全身平衡任务。</p>
+              <p>
+                A Unitree G1 box-catching and whole-body balancing task built with Isaac Lab and
+                reinforcement learning.
+              </p>
             </div>
             <div class="project-tags">
               <span>Isaac Lab</span><span>RL</span><span>Robotics</span>
@@ -169,7 +189,10 @@
             <span class="project-number">02</span>
             <div class="project-main">
               <h3>6D Pose</h3>
-              <p data-i18n="projects.pose">面向机器人操作的物体六自由度位姿估计实验与实现。</p>
+              <p>
+                Experiments and implementations for six-degree-of-freedom object pose estimation
+                in robotic manipulation.
+              </p>
             </div>
             <div class="project-tags"><span>Python</span><span>Pose</span></div>
             <span class="project-arrow" aria-hidden="true">↗</span>
@@ -179,7 +202,10 @@
             <span class="project-number">03</span>
             <div class="project-main">
               <h3>Event Camera Grasping</h3>
-              <p data-i18n="projects.eventCamera">使用事件相机探索低延迟目标感知与机器人抓取检测。</p>
+              <p>
+                Exploring low-latency object perception and robotic grasp detection with event
+                cameras.
+              </p>
             </div>
             <div class="project-tags"><span>Event Camera</span><span>Grasping</span></div>
             <span class="project-arrow" aria-hidden="true">↗</span>
@@ -189,7 +215,7 @@
             <span class="project-number">04</span>
             <div class="project-main">
               <h3>RoboSLAM</h3>
-              <p data-i18n="projects.slam">机器人定位、建图与环境理解方向的实践项目。</p>
+              <p>A hands-on project in robot localization, mapping, and environmental understanding.</p>
             </div>
             <div class="project-tags"><span>SLAM</span><span>Perception</span></div>
             <span class="project-arrow" aria-hidden="true">↗</span>
@@ -198,10 +224,10 @@
       </section>
 
       <section class="contact">
-        <p class="eyebrow"><span></span> <span data-i18n="contact.eyebrow">保持联系</span></p>
-        <h2><span data-i18n="contact.titleLineOne">一起讨论机器人、感知，</span><br /><span data-i18n="contact.titleLineTwo">或者下一个有趣的想法。</span></h2>
+        <p class="eyebrow"><span></span> LET'S CONNECT</p>
+        <h2>Let's talk robotics, perception,<br />or the next interesting idea.</h2>
         <a class="button button-light" href="https://github.com/WongJeMoment">
-          <span data-i18n="contact.action">在 GitHub 找到我</span> <span aria-hidden="true">↗</span>
+          Find me on GitHub <span aria-hidden="true">↗</span>
         </a>
       </section>
     </main>
@@ -211,7 +237,7 @@
         <span class="brand-mark" aria-hidden="true">WJ</span>
         <span>Wong Je</span>
       </a>
-      <p data-i18n="footer.tagline">以好奇心设计与构建。</p>
+      <p>Designed &amp; built with curiosity.</p>
       <p>© <span id="year">2026</span> Wong Je</p>
     </footer>
 

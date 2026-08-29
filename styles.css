@@ -102,48 +102,73 @@ nav {
   font-weight: 600;
 }
 
-nav a:not(.nav-contact) {
+nav > a:not(.nav-contact):not(.language-switch) {
   transition: color 160ms ease;
 }
 
-nav a:not(.nav-contact):hover {
+nav > a:not(.nav-contact):not(.language-switch):hover {
   color: var(--green-dark);
 }
 
-.language-toggle {
+.language-switch {
   display: inline-flex;
-  gap: 0.42rem;
   align-items: center;
   justify-content: center;
-  min-width: 4rem;
-  height: 2.25rem;
-  padding: 0 0.72rem;
+  min-height: 2.55rem;
+  padding: 0.25rem 0.28rem 0.25rem 0.75rem;
   color: var(--ink);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.42);
   border: 1px solid var(--line);
   border-radius: 999px;
-  cursor: pointer;
-  font: inherit;
+  box-shadow: 0 0.25rem 1rem rgba(19, 34, 29, 0.06);
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 500;
-  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+  letter-spacing: 0.04em;
+  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
-.language-toggle:hover {
-  color: var(--paper);
-  background: var(--forest);
+.language-switch:hover {
+  background: rgba(255, 255, 255, 0.75);
   border-color: var(--forest);
+  box-shadow: 0 0.45rem 1.4rem rgba(19, 34, 29, 0.12);
+  transform: translateY(-1px);
 }
 
-.language-toggle:focus-visible {
+.language-switch:focus-visible {
   outline: 2px solid var(--green-dark);
   outline-offset: 3px;
 }
 
-.language-toggle-icon {
+.language-switch-current {
+  color: var(--muted);
   font-family: var(--sans);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.language-switch-divider {
+  width: 1px;
+  height: 0.85rem;
+  margin: 0 0.55rem;
+  background: var(--line);
+}
+
+.language-switch-target {
+  display: grid;
+  min-width: 2.1rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  color: var(--green);
+  background: var(--forest);
+  border-radius: 999px;
+  place-items: center;
+  transition: color 180ms ease, background 180ms ease;
+}
+
+.language-switch:hover .language-switch-target {
+  color: var(--forest);
+  background: var(--green);
 }
 
 .nav-contact {
@@ -701,7 +726,7 @@ footer p {
     width: min(100% - 2rem, 1180px);
   }
 
-  nav a:not(.nav-contact) {
+  nav > a:not(.nav-contact):not(.language-switch) {
     display: none;
   }
 
