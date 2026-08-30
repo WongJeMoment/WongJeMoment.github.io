@@ -200,80 +200,6 @@ video {
   outline-offset: 4px;
 }
 
-.deck-toolbar {
-  position: sticky;
-  z-index: 20;
-  top: 0;
-  display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr) auto auto;
-  gap: 1rem;
-  align-items: center;
-  min-height: 4rem;
-  padding: 0.65rem clamp(1rem, 4vw, 3rem);
-  background: rgba(33, 9, 13, 0.92);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(16px);
-}
-
-.deck-toolbar p {
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 0.67rem;
-}
-
-.deck-toolbar p span {
-  color: var(--accent-soft);
-}
-
-.deck-toolbar strong {
-  justify-self: center;
-  color: rgba(244, 239, 236, 0.55);
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.14em;
-}
-
-.deck-toolbar button {
-  justify-self: end;
-  padding: 0.5rem 0.85rem;
-  color: var(--paper);
-  background: var(--accent-dark);
-  border: 0;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 0.7rem;
-  font-weight: 600;
-}
-
-.deck-toolbar button:hover {
-  background: var(--accent);
-}
-
-.deck-toolbar .deck-step-button {
-  display: inline-flex;
-  gap: 0.45rem;
-  align-items: center;
-  justify-self: auto;
-  min-width: 5.4rem;
-  color: rgba(244, 239, 236, 0.84);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.deck-toolbar .deck-step-button b {
-  font-size: inherit;
-  font-weight: inherit;
-}
-
-.deck-toolbar .deck-step-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.3;
-}
-
-.deck-toolbar .deck-step-button:hover:not(:disabled) {
-  background: var(--accent-dark);
-}
-
 .slide-stack {
   position: relative;
   width: min(1180px, calc(100% - 5rem));
@@ -281,7 +207,7 @@ video {
 }
 
 .ppt-slide {
-  padding-top: 4.5rem;
+  padding-top: 2.5rem;
   scroll-margin-top: 4rem;
 }
 
@@ -405,48 +331,80 @@ video {
 .slide-controls {
   position: absolute;
   z-index: 12;
-  right: clamp(0.65rem, 2vw, 1.5rem);
+  right: auto;
   bottom: 3.35rem;
-  left: clamp(0.65rem, 2vw, 1.5rem);
+  left: 50%;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 0.85rem;
+  grid-template-columns: 2.5rem auto 2.5rem 2.5rem;
+  gap: 0.45rem;
   align-items: center;
+  width: max-content;
+  max-width: calc(100% - 1.3rem);
   margin: 0;
-  padding: 0.55rem;
-  background: linear-gradient(90deg, rgba(33, 9, 13, 0.9), rgba(33, 9, 13, 0.78));
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.42rem;
+  opacity: 0.72;
+  background: rgba(33, 9, 13, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
-  box-shadow: 0 0.8rem 2.2rem rgba(33, 9, 13, 0.28);
-  backdrop-filter: blur(14px);
+  box-shadow: 0 0.5rem 1.6rem rgba(33, 9, 13, 0.18);
+  backdrop-filter: blur(18px) saturate(0.8);
+  transform: translateX(-50%);
+  transition: opacity 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.slide-controls:hover,
+.slide-controls:focus-within {
+  opacity: 0.96;
+  background: rgba(33, 9, 13, 0.66);
+  box-shadow: 0 0.65rem 2rem rgba(33, 9, 13, 0.24);
 }
 
 .slide-controls > button {
-  display: inline-flex;
-  gap: 0.55rem;
+  display: grid;
   align-items: center;
   justify-content: center;
-  min-height: 2.75rem;
-  padding: 0.55rem 1rem;
-  color: var(--paper);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-height: 0;
+  padding: 0;
+  color: rgba(255, 250, 247, 0.88);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 0.72rem;
-  font-weight: 600;
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
+.slide-controls > button svg {
+  grid-area: 1 / 1;
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
 .slide-controls > button:hover:not(:disabled) {
-  background: var(--accent-dark);
-  border-color: var(--accent);
-  transform: translateY(-1px);
+  background: rgba(239, 194, 200, 0.2);
+  border-color: rgba(239, 194, 200, 0.52);
+  transform: scale(1.04);
 }
 
 .slide-controls > button:disabled {
   cursor: not-allowed;
-  opacity: 0.34;
+  opacity: 0.24;
+}
+
+.fullscreen-collapse,
+.fullscreen-control.is-fullscreen .fullscreen-expand {
+  opacity: 0;
+}
+
+.fullscreen-expand,
+.fullscreen-control.is-fullscreen .fullscreen-collapse {
+  opacity: 1;
 }
 
 .slide-pagination {
@@ -455,6 +413,7 @@ video {
   gap: 0.38rem;
   align-items: center;
   justify-content: center;
+  min-width: 0;
 }
 
 .slide-pagination button {
@@ -499,21 +458,6 @@ video {
   box-shadow: none;
 }
 
-.slide-deck:fullscreen .deck-toolbar {
-  position: absolute;
-  z-index: 30;
-  top: max(0.75rem, calc((100vh - var(--fullscreen-slide-height)) / 2 + 0.75rem));
-  right: 50%;
-  width: min(calc(var(--fullscreen-slide-width) - 1.5rem), 72rem);
-  min-height: 3.25rem;
-  padding: 0.45rem 0.6rem;
-  background: rgba(33, 9, 13, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  box-shadow: 0 0.8rem 2.5rem rgba(33, 9, 13, 0.24);
-  transform: translateX(50%);
-}
-
 .slide-deck:fullscreen .slide-stack {
   display: grid;
   width: 100%;
@@ -535,20 +479,17 @@ video {
   box-shadow: none;
 }
 
-.slide-deck:fullscreen .slide-qr-card {
-  top: 13%;
-}
-
 .slide-deck:fullscreen .ppt-slide > footer {
   display: none;
 }
 
 .slide-deck:fullscreen .slide-controls {
-  right: 50%;
+  right: auto;
   bottom: max(0.75rem, calc((100vh - var(--fullscreen-slide-height)) / 2 + 0.75rem));
-  left: auto;
-  width: min(calc(var(--fullscreen-slide-width) - 1.5rem), 72rem);
-  transform: translateX(50%);
+  left: 50%;
+  width: max-content;
+  max-width: calc(var(--fullscreen-slide-width) - 1.5rem);
+  transform: translateX(-50%);
 }
 
 .report-end {
@@ -633,27 +574,6 @@ video {
     border-radius: 0;
   }
 
-  .deck-toolbar {
-    grid-template-columns: auto auto minmax(0, 1fr) auto;
-    gap: 0.55rem;
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-  }
-
-  .deck-toolbar strong {
-    display: none;
-  }
-
-  .deck-toolbar .deck-step-button {
-    min-width: 2.25rem;
-    padding-right: 0.6rem;
-    padding-left: 0.6rem;
-  }
-
-  .deck-toolbar .deck-step-button b {
-    display: none;
-  }
-
   .slide-stack {
     width: calc(100% - 1rem);
   }
@@ -678,16 +598,20 @@ video {
   }
 
   .slide-controls {
-    grid-template-columns: 2.25rem minmax(0, 1fr) 2.25rem;
+    grid-template-columns: 2.25rem minmax(0, 1fr) 2.25rem 2.25rem;
     gap: 0.35rem;
-    right: 0.5rem;
+    right: auto;
     bottom: 2.65rem;
-    left: 0.5rem;
+    left: 50%;
+    width: calc(100% - 1rem);
+    max-width: none;
     padding: 0.4rem;
     border-radius: 999px;
+    transform: translateX(-50%);
   }
 
   .slide-pagination {
+    width: 100%;
     flex-wrap: nowrap;
     justify-content: flex-start;
     padding: 0.1rem 0;
@@ -696,13 +620,10 @@ video {
   }
 
   .slide-controls > button {
+    height: 2.25rem;
     min-height: 2.25rem;
     padding: 0;
     width: 100%;
-  }
-
-  .slide-controls .control-label {
-    display: none;
   }
 
   .slide-pagination button {
@@ -712,16 +633,13 @@ video {
     font-size: 0.5rem;
   }
 
-  .slide-deck:fullscreen .deck-toolbar {
-    top: max(0.4rem, calc((100vh - var(--fullscreen-slide-height)) / 2 + 0.4rem));
-    width: calc(var(--fullscreen-slide-width) - 0.8rem);
-  }
-
   .slide-deck:fullscreen .slide-controls {
-    right: 50%;
+    right: auto;
     bottom: max(0.4rem, calc((100vh - var(--fullscreen-slide-height)) / 2 + 0.4rem));
-    left: auto;
+    left: 50%;
     width: calc(var(--fullscreen-slide-width) - 0.8rem);
+    max-width: none;
+    transform: translateX(-50%);
   }
 
   .report-end {

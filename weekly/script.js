@@ -39,7 +39,7 @@ const slidePreviousButtons = Array.from(document.querySelectorAll("[data-slide-p
 const slideNextButtons = Array.from(document.querySelectorAll("[data-slide-next]"));
 const slidePagination = document.querySelector("[data-slide-pagination]");
 
-if (slideDeck && slideCounter && slidePagination && slides.length) {
+if (slideDeck && slidePagination && slides.length) {
   let currentSlideIndex = 0;
   const pageButtons = slides.map((slide, index) => {
     const button = document.createElement("button");
@@ -83,7 +83,7 @@ if (slideDeck && slideCounter && slidePagination && slides.length) {
       else button.removeAttribute("aria-current");
     });
 
-    slideCounter.textContent = slides[currentSlideIndex].dataset.slideNumber;
+    if (slideCounter) slideCounter.textContent = slides[currentSlideIndex].dataset.slideNumber;
     slidePreviousButtons.forEach((button) => {
       button.disabled = currentSlideIndex === 0;
     });
@@ -139,7 +139,9 @@ if (fullscreenButton && slideDeck && document.fullscreenEnabled) {
   });
 
   document.addEventListener("fullscreenchange", () => {
-    fullscreenButton.textContent = document.fullscreenElement ? "退出全屏" : "全屏浏览";
+    const isFullscreen = Boolean(document.fullscreenElement);
+    fullscreenButton.classList.toggle("is-fullscreen", isFullscreen);
+    fullscreenButton.setAttribute("aria-label", isFullscreen ? "退出全屏" : "进入全屏");
   });
 } else if (fullscreenButton) {
   fullscreenButton.hidden = true;

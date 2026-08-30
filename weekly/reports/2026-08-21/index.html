@@ -9,7 +9,7 @@
     />
     <meta name="theme-color" content="#21090d" />
     <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=20260830-fullscreen-stage" />
+    <link rel="stylesheet" href="styles.css?v=20260830-minimal-controls" />
     <title>用双臂系统抓取高动态物体 — 科研周记</title>
   </head>
   <body class="report-page">
@@ -40,18 +40,6 @@
       </header>
 
       <section class="slide-deck" aria-label="组会周报幻灯片" tabindex="0">
-        <div class="deck-toolbar">
-          <button class="deck-step-button" type="button" data-slide-prev aria-label="上一页">
-            <span aria-hidden="true">←</span><b>上一页</b>
-          </button>
-          <p aria-live="polite"><span data-current-slide>01</span> / 11</p>
-          <strong>PRESENTATION VIEW</strong>
-          <button type="button" data-fullscreen>全屏浏览</button>
-          <button class="deck-step-button" type="button" data-slide-next aria-label="下一页">
-            <b>下一页</b><span aria-hidden="true">→</span>
-          </button>
-        </div>
-
         <div class="slide-stack">
           <article class="ppt-slide" id="slide-01" data-slide-number="01">
             <div class="slide-frame">
@@ -301,12 +289,24 @@
           </article>
 
           <nav class="slide-controls" aria-label="幻灯片翻页">
-            <button type="button" data-slide-prev>
-              <span aria-hidden="true">←</span><span class="control-label">上一页</span>
+            <button type="button" data-slide-prev aria-label="上一页">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 12H5M11 6l-6 6 6 6" />
+              </svg>
             </button>
             <div class="slide-pagination" data-slide-pagination aria-label="选择幻灯片页码"></div>
-            <button type="button" data-slide-next>
-              <span class="control-label">下一页</span><span aria-hidden="true">→</span>
+            <button type="button" data-slide-next aria-label="下一页">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+            <button class="fullscreen-control" type="button" data-fullscreen aria-label="进入全屏">
+              <svg class="fullscreen-expand" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 3H3v5M16 3h5v5M21 16v5h-5M3 16v5h5" />
+              </svg>
+              <svg class="fullscreen-collapse" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 8h5V3M21 8h-5V3M21 16h-5v5M3 16h5v5" />
+              </svg>
             </button>
           </nav>
         </div>
@@ -323,6 +323,6 @@
       <p>© <span id="year">2026</span></p>
     </footer>
 
-    <script src="../../script.js?v=20260830-fullscreen-stage"></script>
+    <script src="../../script.js?v=20260830-minimal-controls"></script>
   </body>
 </html>
