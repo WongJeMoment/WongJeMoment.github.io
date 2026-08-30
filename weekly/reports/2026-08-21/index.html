@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="组会周报：用双臂系统抓取高动态物体，包含论文阅读、奖励设计、实验结果与后续规划。"
+      content="组会周报：用双臂系统抓取高动态物体。以原 PPT 版式在线展示，并保留实验视频与动画。"
     />
     <meta name="theme-color" content="#21090d" />
     <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
@@ -26,285 +26,265 @@
       </nav>
     </header>
 
-    <main>
-      <header class="report-hero">
-        <div class="report-hero-copy">
-          <div class="report-kicker">
-            <span>WEEK 01</span>
-            <time datetime="2026-08-21">2026.08.21</time>
-          </div>
-          <h1>用双臂系统抓取<br /><em>高动态物体</em></h1>
-          <p class="report-subtitle">
-            Learning Dexterous Bimanual Catch Skills through<br />
-            Adversarial-Cooperative Heterogeneous-Agent RL
-          </p>
-          <div class="report-tags">
-            <span>Paper Review</span><span>Robot Learning</span><span>ICRA 2025</span>
-          </div>
+    <main class="ppt-report">
+      <header class="ppt-report-heading">
+        <div>
+          <p class="section-index">WEEK 01 · 2026.08.21</p>
+          <h1>用双臂系统抓取高动态物体</h1>
         </div>
-        <figure class="report-hero-figure">
-          <img
-            src="../../assets/2026-08-21/hero.png"
-            alt="异构投掷者与双臂接球者的任务示意图"
-            width="600"
-            height="320"
-          />
-          <figcaption>THROW · PERCEIVE · CATCH</figcaption>
-        </figure>
+        <div class="ppt-report-meta">
+          <span>原 PPT 版式</span>
+          <span>11 页</span>
+          <span>8 段媒体</span>
+        </div>
       </header>
 
-      <div class="report-layout">
-        <aside class="report-toc" aria-label="本期目录">
-          <p>CONTENTS</p>
-          <a href="#background"><span>01</span>研究背景</a>
-          <a href="#problem"><span>02</span>问题定义</a>
-          <a href="#paper"><span>03</span>论文阅读</a>
-          <a href="#reward"><span>04</span>奖励设计</a>
-          <a href="#experiment"><span>05</span>实验设计</a>
-          <a href="#results"><span>06</span>结果分析</a>
-          <a href="#system"><span>07</span>系统重构</a>
-          <a href="#progress"><span>08</span>当前进展</a>
-          <a href="#planning"><span>09</span>后续规划</a>
-        </aside>
+      <section class="slide-deck" aria-label="组会周报幻灯片">
+        <div class="deck-toolbar">
+          <p><span data-current-slide>01</span> / 11</p>
+          <strong>PRESENTATION VIEW</strong>
+          <button type="button" data-fullscreen>全屏浏览</button>
+        </div>
 
-        <article class="report-article">
-          <section class="report-intro">
-            <p class="report-lead">
-              本周围绕“机器人如何抓取高动态物体”展开：先从真实场景的速度、不确定性和尺寸差异出发，
-              阅读双臂灵巧抓取工作，再把论文中的异构多智能体训练思路映射到自己的感知—抓取系统。
-            </p>
-            <dl>
-              <div><dt>核心问题</dt><dd>动态物体姿态轨迹预测与实时抓取</dd></div>
-              <div><dt>阅读论文</dt><dd>Kim et al. · ICRA 2025</dd></div>
-              <div><dt>本周输出</dt><dd>奖励分析、实验复盘、系统路线图</dd></div>
-            </dl>
-          </section>
-
-          <section class="report-section" id="background">
-            <div class="report-section-heading">
-              <span>01</span>
-              <div><p>BACKGROUND</p><h2>机器人要如何抓取高动态物体？</h2></div>
-            </div>
-            <p>
-              动态抓取面对的并不是单一的“快”：物体初速度、旋转、尺寸、遮挡和环境光都会改变可抓取窗口。
-              真实系统必须在有限观测中完成状态估计、轨迹预测与全身控制。
-            </p>
-            <div class="media-grid two-columns">
-              <figure class="video-card">
-                <video
-                  controls
-                  playsinline
-                  preload="metadata"
-                  poster="../../assets/2026-08-21/background-poster-1.webp"
-                >
-                  <source src="../../assets/2026-08-21/video-1.mp4" type="video/mp4" />
-                </video>
-                <figcaption><span>SCENE 01</span>人工随机抛掷：方向与速度不可预知</figcaption>
-              </figure>
-              <figure class="video-card">
-                <video
-                  controls
-                  playsinline
-                  preload="metadata"
-                  poster="../../assets/2026-08-21/background-poster-2.webp"
-                >
-                  <source src="../../assets/2026-08-21/video-2.mp4" type="video/mp4" />
-                </video>
-                <figcaption><span>SCENE 02</span>高速物流：连续目标与有限反应时间</figcaption>
-              </figure>
-            </div>
-          </section>
-
-          <section class="report-section" id="problem">
-            <div class="report-section-heading">
-              <span>02</span>
-              <div><p>PROBLEM</p><h2>问题定义</h2></div>
-            </div>
-            <blockquote class="problem-statement">
-              如何设计一套感知—抓取系统，使机器人在复杂场景下尽可能预测高动态运动物体的姿态轨迹，
-              并在短时间窗口内完成稳定抓取？
-            </blockquote>
-            <div class="challenge-grid">
-              <article><span>01</span><h3>稀疏观测</h3><p>高速运动与运动模糊压缩了可靠视觉信息。</p></article>
-              <article><span>02</span><h3>策略耦合</h3><p>投掷难度和抓取能力相互影响，奖励责任容易混淆。</p></article>
-              <article><span>03</span><h3>对象差异</h3><p>尺寸、形状和训练频次带来明显的数据不平衡。</p></article>
-            </div>
-          </section>
-
-          <section class="report-section" id="paper">
-            <div class="report-section-heading">
-              <span>03</span>
-              <div><p>PAPER REVIEW</p><h2>异构智能体如何共同学习</h2></div>
-            </div>
-            <div class="citation-card">
-              <div><span>ICRA 2025</span><strong>RELATED WORK</strong></div>
-              <p>
-                Kim, Taewoo, Youngwoo Yoon, and Jaehong Kim. “Learning dexterous bimanual catch skills
-                through adversarial-cooperative heterogeneous-agent reinforcement learning.”
-              </p>
-            </div>
-            <p>
-              论文将任务拆成异构的投掷者与接球者：两者在局部目标上具有对抗关系，
-              又通过聚合奖励共同推动课程难度增长，并采用 Heterogeneous-Agent PPO 进行优化。
-            </p>
-            <figure class="report-figure wide">
+        <div class="slide-stack">
+          <article class="ppt-slide" id="slide-01" data-slide-number="01">
+            <div class="slide-frame">
               <img
-                src="../../assets/2026-08-21/happo-framework.png"
-                alt="投掷者、接球者与聚合奖励组成的 HAPPO 框架"
-                width="1160"
-                height="600"
+                src="../../assets/2026-08-21/slides/slide-01.png"
+                alt="第 1 页：用双臂系统抓取高动态物体封面"
+                width="2001"
+                height="1125"
+              />
+            </div>
+            <footer><span>01</span><p>封面</p></footer>
+          </article>
+
+          <article class="ppt-slide" id="slide-02" data-slide-number="02">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-02.png"
+                alt="第 2 页：机器人抓取高动态物体的研究背景"
+                width="2001"
+                height="1125"
+              />
+              <video
+                class="ppt-media"
+                style="--media-x: 7.315%; --media-y: 17.013%; --media-w: 36.346%; --media-h: 36.346%"
+                controls
+                playsinline
+                preload="metadata"
+                poster="../../assets/2026-08-21/background-poster-1.webp"
+                aria-label="人工抛掷动态物体视频"
+              >
+                <source src="../../assets/2026-08-21/video-1.mp4" type="video/mp4" />
+              </video>
+              <video
+                class="ppt-media"
+                style="--media-x: 7.315%; --media-y: 55.874%; --media-w: 36.346%; --media-h: 36.348%"
+                controls
+                playsinline
+                preload="metadata"
+                poster="../../assets/2026-08-21/background-poster-2.webp"
+                aria-label="高速物流分拣视频"
+              >
+                <source src="../../assets/2026-08-21/video-2.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <footer><span>02</span><p>Background</p></footer>
+          </article>
+
+          <article class="ppt-slide" id="slide-03" data-slide-number="03">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-03.png"
+                alt="第 3 页：高动态物体感知与抓取的问题定义"
+                width="2001"
+                height="1125"
                 loading="lazy"
               />
-              <figcaption>异构投掷者与接球者通过聚合奖励形成自适应课程。</figcaption>
-            </figure>
-          </section>
+            </div>
+            <footer><span>03</span><p>Problem</p></footer>
+          </article>
 
-          <section class="report-section" id="reward">
-            <div class="report-section-heading">
-              <span>04</span>
-              <div><p>REWARD DESIGN</p><h2>难度匹配决定学习是否继续</h2></div>
+          <article class="ppt-slide" id="slide-04" data-slide-number="04">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-04.png"
+                alt="第 4 页：异构投掷者与接球者的相关工作"
+                width="2001"
+                height="1125"
+                loading="lazy"
+              />
             </div>
-            <div class="equation-stack" aria-label="奖励函数">
-              <div><span>Catch</span><code>r<sub>catch</sub> = w₀r<sub>hand dist</sub> + w₁r<sub>goal</sub> + w₂r<sub>finger contact</sub> − w₃r̄<sub>arm contact</sub> − w₄r̄<sub>action</sub></code></div>
-              <div><span>Throw</span><code>r<sub>throw</sub> = w₅r<sub>object velocity</sub> + w₆r<sub>thrower action</sub></code></div>
-              <div><span>Total</span><code>r<sub>total</sub> = αr<sub>catch</sub> + (1 − α)r<sub>throw</sub></code></div>
-            </div>
-            <div class="difficulty-balance">
-              <article class="too-easy">
-                <span>投得太易</span><strong>课程停滞</strong><p>抓取奖励高，投掷奖励低，缺少新的挑战。</p>
-              </article>
-              <article class="balanced">
-                <span>难度匹配</span><strong>能力增长</strong><p>双方奖励均较高，聚合收益推动课程继续。</p>
-              </article>
-              <article class="too-hard">
-                <span>投得太难</span><strong>学习退化</strong><p>抓取频繁失败，策略得到的有效信号变差。</p>
-              </article>
-            </div>
-            <p class="insight-callout">
-              投掷者更像会适应学生水平的陪练，而不是只追求让接球者失败的敌手。
-            </p>
-          </section>
+            <footer><span>04</span><p>Related Works</p></footer>
+          </article>
 
-          <section class="report-section" id="experiment">
-            <div class="report-section-heading">
-              <span>05</span>
-              <div><p>EXPERIMENT</p><h2>实验平台与训练对象</h2></div>
+          <article class="ppt-slide" id="slide-05" data-slide-number="05">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-05.png"
+                alt="第 5 页：抓取、投掷与聚合奖励函数"
+                width="2001"
+                height="1125"
+                loading="lazy"
+              />
             </div>
-            <div class="hardware-grid">
-              <figure><img src="../../assets/2026-08-21/robot-arm.png" alt="UR 系列机械臂" loading="lazy" /><figcaption>2 × UR3 robotic arms</figcaption></figure>
-              <figure><img src="../../assets/2026-08-21/allegro-hands.jpg" alt="Allegro 灵巧手" loading="lazy" /><figcaption>Allegro hands</figcaption></figure>
-              <figure><img src="../../assets/2026-08-21/test-objects.png" alt="实验使用的十五种物体" loading="lazy" /><figcaption>15 objects · different sizes</figcaption></figure>
-            </div>
-            <div class="compute-strip">
-              <span>AMD Ryzen 9 7950X</span><span>128 GB RAM</span><span>RTX 6000 Ada</span>
-            </div>
-            <div class="simulation-grid" aria-label="仿真抓取示例">
-              <video autoplay muted loop playsinline preload="metadata"><source src="../../assets/2026-08-21/simulation-1.mp4" type="video/mp4" /></video>
-              <video autoplay muted loop playsinline preload="metadata"><source src="../../assets/2026-08-21/simulation-2.mp4" type="video/mp4" /></video>
-              <video autoplay muted loop playsinline preload="metadata"><source src="../../assets/2026-08-21/simulation-3.mp4" type="video/mp4" /></video>
-            </div>
-          </section>
+            <footer><span>05</span><p>Reward Function</p></footer>
+          </article>
 
-          <section class="report-section" id="results">
-            <div class="report-section-heading">
-              <span>06</span>
-              <div><p>RESULTS</p><h2>对象差异暴露了数据不平衡</h2></div>
+          <article class="ppt-slide" id="slide-06" data-slide-number="06">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-06.png"
+                alt="第 6 页：投掷难度对抓取学习效果的影响"
+                width="2001"
+                height="1125"
+                loading="lazy"
+              />
             </div>
-            <div class="result-visuals">
-              <figure>
-                <img src="../../assets/2026-08-21/object-rewards.png" alt="不同物体的奖励得分柱状图" loading="lazy" />
-                <figcaption>Object-specific reward</figcaption>
-              </figure>
-              <figure>
-                <img src="../../assets/2026-08-21/catch-sequence.png" alt="不同物体抓取过程" loading="lazy" />
-                <figcaption>Catch sequence</figcaption>
-              </figure>
-            </div>
-            <div class="score-comparison">
-              <div><span>高分对象</span><strong>肉罐 936.29</strong><p>砖块 916.55 · 香蕉 916.18</p></div>
-              <div><span>低分对象</span><strong>健身球 −5.09</strong><p>大板 39.13 · 锅 126.14</p></div>
-            </div>
-            <p>
-              大尺寸并不能单独解释失败。多物体训练中的采样不均衡与策略冲突，
-              更可能是健身球和大板表现显著偏低的主因。
-            </p>
-          </section>
+            <footer><span>06</span><p>Paper Review</p></footer>
+          </article>
 
-          <section class="report-section" id="system">
-            <div class="report-section-heading">
-              <span>07</span>
-              <div><p>SYSTEM DESIGN</p><h2>从论文结论回到自己的系统</h2></div>
+          <article class="ppt-slide" id="slide-07" data-slide-number="07">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-07.png"
+                alt="第 7 页：双 UR3、Allegro 灵巧手和测试物体的实验设计"
+                width="2001"
+                height="1125"
+                loading="lazy"
+              />
+              <video
+                class="ppt-media ppt-animation"
+                style="--media-x: 64.726%; --media-y: -0.27%; --media-w: 30.423%; --media-h: 30.423%"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="抓取仿真动画一"
+              >
+                <source src="../../assets/2026-08-21/simulation-1.mp4" type="video/mp4" />
+              </video>
+              <video
+                class="ppt-media ppt-animation"
+                style="--media-x: 64.726%; --media-y: 30.986%; --media-w: 30.423%; --media-h: 30.423%"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="抓取仿真动画二"
+              >
+                <source src="../../assets/2026-08-21/simulation-2.mp4" type="video/mp4" />
+              </video>
+              <video
+                class="ppt-media ppt-animation"
+                style="--media-x: 64.507%; --media-y: 62.889%; --media-w: 30.861%; --media-h: 30.861%"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                aria-label="抓取仿真动画三"
+              >
+                <source src="../../assets/2026-08-21/simulation-3.mp4" type="video/mp4" />
+              </video>
             </div>
-            <div class="system-pipeline">
-              <article>
-                <span>01 · PERCEPTION</span><h3>视觉检测</h3>
-                <p>RGB-D 与事件相机协同预测 6D pose、轨迹和物体尺寸。</p>
-              </article>
-              <i aria-hidden="true">→</i>
-              <article>
-                <span>02 · CONTROL</span><h3>控制抓取</h3>
-                <p>重构奖励函数，明确投掷与抓取责任，并融入持续学习。</p>
-              </article>
-              <i aria-hidden="true">→</i>
-              <article>
-                <span>03 · DEPLOYMENT</span><h3>实机部署</h3>
-                <p>在仿真中闭环验证视觉抓取，最终推进 sim-to-real。</p>
-              </article>
-            </div>
-          </section>
+            <footer><span>07</span><p>Experiment</p></footer>
+          </article>
 
-          <section class="report-section" id="progress">
-            <div class="report-section-heading">
-              <span>08</span>
-              <div><p>CURRENT PROGRESS</p><h2>事件感知与仿真环境进展</h2></div>
+          <article class="ppt-slide" id="slide-08" data-slide-number="08">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-08.png"
+                alt="第 8 页：对象差异与数据不平衡实验结果"
+                width="2001"
+                height="1125"
+                loading="lazy"
+              />
             </div>
-            <div class="progress-videos">
-              <figure class="video-card">
-                <video controls playsinline preload="none" poster="../../assets/2026-08-21/progress-poster-event.webp"><source src="../../assets/2026-08-21/video-3.mp4" type="video/mp4" /></video>
-                <figcaption><span>01</span>事件相机环境与在线检测</figcaption>
-              </figure>
-              <figure class="video-card">
-                <video controls playsinline preload="none" poster="../../assets/2026-08-21/progress-poster-pose.webp"><source src="../../assets/2026-08-21/video-4.mp4" type="video/mp4" /></video>
-                <figcaption><span>02</span>物体 6D pose 可视化</figcaption>
-              </figure>
-              <figure class="video-card">
-                <video controls playsinline preload="none" poster="../../assets/2026-08-21/progress-poster-sim.webp"><source src="../../assets/2026-08-21/video-5.mp4" type="video/mp4" /></video>
-                <figcaption><span>03</span>Isaac Sim 事件相机接入</figcaption>
-              </figure>
-            </div>
-          </section>
+            <footer><span>08</span><p>Results</p></footer>
+          </article>
 
-          <section class="report-section" id="planning">
-            <div class="report-section-heading">
-              <span>09</span>
-              <div><p>FUTURE WORK</p><h2>后续规划</h2></div>
+          <article class="ppt-slide" id="slide-09" data-slide-number="09">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-09.png"
+                alt="第 9 页：感知、抓取与实机部署系统路线"
+                width="2001"
+                height="1125"
+                loading="lazy"
+              />
             </div>
-            <ol class="research-timeline">
-              <li>
-                <time datetime="2026-10-20">10.20</time>
-                <div><h3>控制与姿态估计</h3><p>完成控制抓取仿真，改善大尺寸物体成功率；系统性优化 6D pose 精度。</p></div>
-              </li>
-              <li>
-                <time datetime="2026-11-20">11.20</time>
-                <div><h3>双相机感知闭环</h3><p>完成尺寸与轨迹估计，并在仿真中用视觉驱动高动态物体抓取。</p></div>
-              </li>
-              <li>
-                <time datetime="2026-12-31">12.31</time>
-                <div><h3>Sim-to-real 与论文</h3><p>完成实机迁移，形成两篇论文的基本稿件。</p></div>
-              </li>
-            </ol>
-            <div class="target-venues">
-              <span>TARGET</span><strong>ICCV 2027</strong><strong>RSS 2027</strong>
-            </div>
-          </section>
+            <footer><span>09</span><p>System Design</p></footer>
+          </article>
 
-          <footer class="report-end">
-            <span>END OF WEEK 01</span>
-            <h2>下一周，继续让系统向前。</h2>
-            <a href="../../">返回周报归档 <span aria-hidden="true">↗</span></a>
-          </footer>
-        </article>
-      </div>
+          <article class="ppt-slide" id="slide-10" data-slide-number="10">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-10.png"
+                alt="第 10 页：当前事件视觉与仿真进展"
+                width="2001"
+                height="1125"
+                loading="lazy"
+              />
+              <video
+                class="ppt-media"
+                style="--media-x: 52.8%; --media-y: 6.677%; --media-w: 40.406%; --media-h: 40.409%"
+                controls
+                playsinline
+                preload="none"
+                poster="../../assets/2026-08-21/progress-poster-event.webp"
+                aria-label="事件相机环境与在线检测视频"
+              >
+                <source src="../../assets/2026-08-21/video-3.mp4" type="video/mp4" />
+              </video>
+              <video
+                class="ppt-media"
+                style="--media-x: 3.795%; --media-y: 29.586%; --media-w: 40.406%; --media-h: 40.409%"
+                controls
+                playsinline
+                preload="none"
+                poster="../../assets/2026-08-21/progress-poster-pose.webp"
+                aria-label="物体姿态估计视频"
+              >
+                <source src="../../assets/2026-08-21/video-4.mp4" type="video/mp4" />
+              </video>
+              <video
+                class="ppt-media"
+                style="--media-x: 52.8%; --media-y: 52.914%; --media-w: 39.651%; --media-h: 39.654%"
+                controls
+                playsinline
+                preload="none"
+                poster="../../assets/2026-08-21/progress-poster-sim.webp"
+                aria-label="Isaac Sim 事件相机仿真视频"
+              >
+                <source src="../../assets/2026-08-21/video-5.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <footer><span>10</span><p>Current Progress</p></footer>
+          </article>
+
+          <article class="ppt-slide" id="slide-11" data-slide-number="11">
+            <div class="slide-frame">
+              <img
+                src="../../assets/2026-08-21/slides/slide-11.png"
+                alt="第 11 页：研究规划与目标会议"
+                width="2001"
+                height="1125"
+                loading="lazy"
+              />
+            </div>
+            <footer><span>11</span><p>Planning</p></footer>
+          </article>
+        </div>
+      </section>
+
+      <footer class="report-end">
+        <p>END OF WEEK 01</p>
+        <a href="../../">返回周报归档 <span aria-hidden="true">↗</span></a>
+      </footer>
     </main>
 
     <footer class="weekly-footer">
