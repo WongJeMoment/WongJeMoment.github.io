@@ -274,3 +274,156 @@ nav > a:not(.nav-contact):not(.language-switch):hover {
   outline: 2px solid var(--accent-dark);
   outline-offset: 4px;
 }
+
+/* Compact archive drawer: the two cards fan open like files when explored. */
+.archive-drawer {
+  position: fixed;
+  z-index: 30;
+  top: 50%;
+  right: 0;
+  width: 4.8rem;
+  height: 9.2rem;
+  perspective: 700px;
+  transform: translateY(-50%);
+  transition: width 540ms cubic-bezier(0.22, 1, 0.36, 1), height 540ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.archive-drawer::after {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 0.05rem;
+  padding: 0.28rem 0.18rem;
+  color: rgba(33, 9, 13, 0.52);
+  background: rgba(255, 248, 246, 0.82);
+  border: 1px solid rgba(127, 31, 46, 0.18);
+  border-right: 0;
+  border-radius: 0.38rem 0 0 0.38rem;
+  content: "FILES";
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  opacity: 0.9;
+  transform: translateY(-50%);
+  transition: opacity 180ms ease, transform 380ms ease;
+  writing-mode: vertical-rl;
+}
+
+.archive-drawer .research-journal-rail,
+.archive-drawer .thoughts-rail {
+  position: absolute;
+  top: 0;
+  right: -0.25rem;
+  display: grid;
+  width: 3.75rem;
+  height: 6.9rem;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 0.9rem 0 0 0.9rem;
+  place-items: center;
+  transform-origin: right center;
+  transition:
+    top 540ms cubic-bezier(0.22, 1, 0.36, 1),
+    right 540ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 260ms ease,
+    height 540ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 200ms ease,
+    box-shadow 280ms ease,
+    transform 540ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.archive-drawer .research-journal-rail {
+  z-index: 1;
+  top: 0.35rem;
+  transform: translateX(0.45rem) rotate(-4deg) rotateY(-7deg);
+}
+
+.archive-drawer .thoughts-rail {
+  z-index: 2;
+  top: 2rem;
+  transform: translateX(0.15rem) rotate(3deg) rotateY(-4deg);
+}
+
+.archive-drawer .research-journal-rail::before,
+.archive-drawer .thoughts-rail::before {
+  position: absolute;
+  top: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.archive-card-short {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: inherit;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 160ms ease, transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.archive-card-detail {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.65rem;
+  opacity: 0;
+  transform: translateY(1.2rem);
+  transition: opacity 160ms ease, transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.archive-drawer:hover,
+.archive-drawer:focus-within {
+  width: 5rem;
+  height: 30.8rem;
+}
+
+.archive-drawer:hover::after,
+.archive-drawer:focus-within::after {
+  opacity: 0;
+  transform: translate(-0.8rem, -50%);
+}
+
+.archive-drawer:hover .research-journal-rail,
+.archive-drawer:focus-within .research-journal-rail,
+.archive-drawer:hover .thoughts-rail,
+.archive-drawer:focus-within .thoughts-rail {
+  right: 0;
+  width: 3.7rem;
+  height: 15rem;
+  transform: translateX(0) rotate(0) rotateY(0);
+}
+
+.archive-drawer:hover .research-journal-rail,
+.archive-drawer:focus-within .research-journal-rail {
+  top: 0.25rem;
+}
+
+.archive-drawer:hover .thoughts-rail,
+.archive-drawer:focus-within .thoughts-rail {
+  top: 15.55rem;
+}
+
+.archive-drawer:hover .archive-card-short,
+.archive-drawer:focus-within .archive-card-short {
+  opacity: 0;
+  transform: translate(-50%, -80%);
+}
+
+.archive-drawer:hover .archive-card-detail,
+.archive-drawer:focus-within .archive-card-detail {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 180ms;
+}
+
+.archive-drawer .research-journal-rail:hover,
+.archive-drawer .thoughts-rail:hover {
+  width: 4rem;
+}

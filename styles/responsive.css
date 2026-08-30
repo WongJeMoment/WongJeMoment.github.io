@@ -220,6 +220,63 @@
     width: 2rem;
     height: 2rem;
   }
+
+  .archive-drawer,
+  .archive-drawer:hover,
+  .archive-drawer:focus-within {
+    top: auto;
+    right: 1rem;
+    bottom: 1rem;
+    display: flex;
+    width: 7rem;
+    height: 3.15rem;
+    gap: 0.7rem;
+    perspective: none;
+    transform: none;
+  }
+
+  .archive-drawer::after {
+    display: none;
+  }
+
+  .archive-drawer .research-journal-rail,
+  .archive-drawer .thoughts-rail,
+  .archive-drawer:hover .research-journal-rail,
+  .archive-drawer:focus-within .research-journal-rail,
+  .archive-drawer:hover .thoughts-rail,
+  .archive-drawer:focus-within .thoughts-rail {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    width: 3.15rem;
+    height: 3.15rem;
+    min-height: 3.15rem;
+    padding: 0;
+    border-right: 1px solid rgba(127, 31, 46, 0.25);
+    border-radius: 0.9rem;
+    box-shadow: 0 0.7rem 1.8rem rgba(68, 12, 23, 0.2);
+    transform: none;
+  }
+
+  .archive-drawer .archive-card-detail {
+    display: none;
+  }
+
+  .archive-drawer .archive-card-short,
+  .archive-drawer:hover .archive-card-short,
+  .archive-drawer:focus-within .archive-card-short {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .archive-drawer .research-journal-rail::before,
+  .archive-drawer .thoughts-rail::before {
+    top: 0.38rem;
+    left: 50%;
+    width: 0.25rem;
+    height: 0.25rem;
+  }
 }
 
 @media (hover: none) {
