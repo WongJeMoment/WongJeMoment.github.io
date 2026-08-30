@@ -197,3 +197,80 @@ nav > a:not(.nav-contact):not(.language-switch):hover {
   outline: 2px solid var(--accent-dark);
   outline-offset: 4px;
 }
+
+.thoughts-rail {
+  position: fixed;
+  z-index: 29;
+  top: 50%;
+  right: 0;
+  display: flex;
+  width: 3.7rem;
+  padding: 1.15rem 0.7rem;
+  color: var(--deep-red);
+  background:
+    linear-gradient(160deg, rgba(255, 250, 247, 0.98), rgba(239, 194, 200, 0.94));
+  border: 1px solid rgba(127, 31, 46, 0.25);
+  border-right: 0;
+  border-radius: 1rem 0 0 1rem;
+  box-shadow: 0 1rem 2.6rem rgba(68, 12, 23, 0.18);
+  align-items: center;
+  flex-direction: column;
+  gap: 0.65rem;
+  transform: translateY(calc(-50% + 15.25rem));
+  transition: width 200ms ease, background 200ms ease, box-shadow 200ms ease;
+}
+
+.thoughts-rail::before {
+  width: 0.38rem;
+  height: 0.38rem;
+  background: var(--accent-dark);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.25rem rgba(134, 31, 48, 0.1);
+  content: "";
+}
+
+.thoughts-rail strong {
+  color: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  writing-mode: vertical-rl;
+}
+
+.thoughts-rail-kicker {
+  color: rgba(33, 9, 13, 0.52);
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 0.13em;
+  line-height: 1;
+  writing-mode: vertical-rl;
+}
+
+.thoughts-rail-arrow {
+  display: grid;
+  width: 1.65rem;
+  height: 1.65rem;
+  color: #fff8f6;
+  background: var(--deep-red);
+  border-radius: 50%;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  place-items: center;
+  transition: transform 200ms ease;
+}
+
+.thoughts-rail:hover {
+  width: 4rem;
+  background: linear-gradient(160deg, #fffaf7, #e9aeb7);
+  box-shadow: 0 1.2rem 3rem rgba(68, 12, 23, 0.25);
+}
+
+.thoughts-rail:hover .thoughts-rail-arrow {
+  transform: translate(2px, -2px);
+}
+
+.thoughts-rail:focus-visible {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 4px;
+}
