@@ -369,19 +369,23 @@ nav > a:not(.nav-contact):not(.language-switch):hover {
 }
 
 .archive-card-detail {
-  display: flex;
+  display: grid;
+  width: 100%;
+  padding: 0 1rem 0 1.9rem;
   align-items: center;
-  flex-direction: column;
-  gap: 0.65rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 1rem;
+  row-gap: 0.32rem;
   opacity: 0;
-  transform: translateY(1.2rem);
+  transform: translateX(2rem);
   transition: opacity 160ms ease, transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .archive-drawer:hover,
 .archive-drawer:focus-within {
-  width: 5rem;
-  height: 30.8rem;
+  width: 18.75rem;
+  height: 12.3rem;
 }
 
 .archive-drawer:hover::after,
@@ -395,19 +399,19 @@ nav > a:not(.nav-contact):not(.language-switch):hover {
 .archive-drawer:hover .thoughts-rail,
 .archive-drawer:focus-within .thoughts-rail {
   right: 0;
-  width: 3.7rem;
-  height: 15rem;
+  width: 17.25rem;
+  height: 5.65rem;
   transform: translateX(0) rotate(0) rotateY(0);
 }
 
 .archive-drawer:hover .research-journal-rail,
 .archive-drawer:focus-within .research-journal-rail {
-  top: 0.25rem;
+  top: 0.15rem;
 }
 
 .archive-drawer:hover .thoughts-rail,
 .archive-drawer:focus-within .thoughts-rail {
-  top: 15.55rem;
+  top: 6.3rem;
 }
 
 .archive-drawer:hover .archive-card-short,
@@ -419,11 +423,56 @@ nav > a:not(.nav-contact):not(.language-switch):hover {
 .archive-drawer:hover .archive-card-detail,
 .archive-drawer:focus-within .archive-card-detail {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
   transition-delay: 180ms;
 }
 
 .archive-drawer .research-journal-rail:hover,
 .archive-drawer .thoughts-rail:hover {
-  width: 4rem;
+  width: 18rem;
+}
+
+.archive-drawer:hover .research-journal-rail::before,
+.archive-drawer:focus-within .research-journal-rail::before,
+.archive-drawer:hover .thoughts-rail::before,
+.archive-drawer:focus-within .thoughts-rail::before {
+  top: 50%;
+  left: 0.9rem;
+  transform: translateY(-50%);
+}
+
+.archive-drawer:hover .research-journal-kicker,
+.archive-drawer:focus-within .research-journal-kicker,
+.archive-drawer:hover .thoughts-rail-kicker,
+.archive-drawer:focus-within .thoughts-rail-kicker {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 0.5rem;
+  letter-spacing: 0.14em;
+  text-align: left;
+  writing-mode: horizontal-tb;
+}
+
+.archive-drawer:hover .research-journal-rail strong,
+.archive-drawer:focus-within .research-journal-rail strong,
+.archive-drawer:hover .thoughts-rail strong,
+.archive-drawer:focus-within .thoughts-rail strong {
+  grid-column: 1;
+  grid-row: 2;
+  font-size: 1.05rem;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+  text-align: left;
+  white-space: nowrap;
+  writing-mode: horizontal-tb;
+}
+
+.archive-drawer:hover .research-journal-arrow,
+.archive-drawer:focus-within .research-journal-arrow,
+.archive-drawer:hover .thoughts-rail-arrow,
+.archive-drawer:focus-within .thoughts-rail-arrow {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  width: 2.15rem;
+  height: 2.15rem;
 }
