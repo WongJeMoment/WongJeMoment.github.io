@@ -243,7 +243,7 @@ a {
 }
 
 .moments header p,
-.coming-soon span {
+.memory-feature-meta {
   margin: 0;
   color: var(--violet);
   font-family: var(--mono);
@@ -257,20 +257,163 @@ a {
   font-size: clamp(2.4rem, 5vw, 4.5rem);
 }
 
-.coming-soon {
+.memory-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(19rem, 0.85fr);
+  min-height: 35rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  box-shadow: 0 1rem 3.5rem rgba(68, 31, 55, 0.08);
+  transition: border-color 260ms ease, box-shadow 260ms ease, transform 260ms ease;
+}
+
+.memory-feature:hover {
+  border-color: rgba(129, 103, 170, 0.38);
+  box-shadow: 0 1.6rem 4.5rem rgba(68, 31, 55, 0.16);
+  transform: translateY(-0.35rem);
+}
+
+.memory-feature-collage {
+  position: relative;
+  min-height: 35rem;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.memory-feature-collage::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 48%, rgba(37, 19, 31, 0.62));
+  content: "";
+  pointer-events: none;
+}
+
+.memory-feature-collage img {
+  position: absolute;
+  object-fit: cover;
+  transition: filter 420ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.memory-cover-main {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: saturate(0.72) sepia(0.08);
+}
+
+.memory-cover-friend {
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 2;
+  width: 38%;
+  aspect-ratio: 4 / 3;
+  border: 0.5rem solid var(--paper);
+  box-shadow: 0 0.8rem 2.5rem rgba(37, 19, 31, 0.35);
+  transform: rotate(3deg);
+}
+
+.memory-cover-lab {
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 1;
+  width: 31%;
+  aspect-ratio: 1;
+  border: 0.45rem solid rgba(255, 248, 239, 0.94);
+  box-shadow: 0 0.8rem 2.5rem rgba(37, 19, 31, 0.28);
+  transform: rotate(-4deg);
+}
+
+.memory-cover-years {
+  position: absolute;
+  z-index: 3;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: clamp(1.2rem, 3vw, 2.4rem);
+  letter-spacing: 0.06em;
+}
+
+.memory-feature:hover .memory-cover-main {
+  filter: saturate(0.95) sepia(0);
+  transform: scale(1.035);
+}
+
+.memory-feature:hover .memory-cover-friend {
+  transform: rotate(1deg) translate(-0.25rem, -0.25rem);
+}
+
+.memory-feature:hover .memory-cover-lab {
+  transform: rotate(-1deg) translate(-0.2rem, 0.2rem);
+}
+
+.memory-feature-copy {
+  display: flex;
+  padding: clamp(2rem, 4vw, 4rem);
+  flex-direction: column;
+}
+
+.memory-feature-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.memory-feature-meta time {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.memory-feature h3 {
+  margin: auto 0 1.6rem;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 5rem);
+  letter-spacing: -0.08em;
+  line-height: 1.04;
+}
+
+.memory-feature blockquote {
+  margin: 0;
+  color: var(--coral);
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  line-height: 1.65;
+}
+
+.memory-feature-copy > p {
+  margin: 1.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.memory-feature-action {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 10rem;
-  padding: 2rem;
-  background: rgba(255, 255, 255, 0.38);
-  border: 1px dashed var(--line);
-  border-radius: 1.25rem;
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
-.coming-soon p {
-  margin: 0;
-  color: var(--muted);
+.memory-feature-action b {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: 50%;
+  font-weight: 500;
+  place-items: center;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.memory-feature:hover .memory-feature-action b {
+  background: var(--violet);
+  transform: translate(0.15rem, -0.15rem);
 }
 
 footer {
@@ -308,11 +451,23 @@ footer p {
     min-height: 27rem;
   }
 
-  .coming-soon,
   footer {
     align-items: flex-start;
     flex-direction: column;
     gap: 0.75rem;
+  }
+
+  .memory-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-feature-collage {
+    width: 100%;
+    min-height: 28rem;
+  }
+
+  .memory-feature-copy {
+    min-height: 30rem;
   }
 }
 

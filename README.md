@@ -40,6 +40,8 @@ thoughts/
 life/
   index.html          多彩生活归档首页
   styles.css          多彩生活归档样式
+  memories/
+    2021-2024/        本科回忆录页面与照片、视频素材
 ```
 
 `index.html` 和 `en.html` 只保留页面外壳。新增或修改内容时，在 `components/zh/` 与
