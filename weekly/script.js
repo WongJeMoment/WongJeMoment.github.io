@@ -140,6 +140,38 @@ if (slideDeck && slidePagination && slides.length) {
     showSlide(requestedIndex);
   });
 
+  let wheelDelta = 0;
+  let wheelGestureLocked = false;
+  let wheelGestureTimer;
+
+  slideDeck.addEventListener("wheel", (event) => {
+    if (document.fullscreenElement !== slideDeck) return;
+
+    event.preventDefault();
+    showControls();
+    window.clearTimeout(wheelGestureTimer);
+    wheelGestureTimer = window.setTimeout(() => {
+      wheelDelta = 0;
+      wheelGestureLocked = false;
+    }, 180);
+
+    if (wheelGestureLocked) return;
+
+    const rawDelta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+    const deltaScale = event.deltaMode === WheelEvent.DOM_DELTA_LINE
+      ? 16
+      : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+        ? window.innerHeight
+        : 1;
+    wheelDelta += rawDelta * deltaScale;
+
+    if (Math.abs(wheelDelta) < 36) return;
+
+    showSlide(currentSlideIndex + Math.sign(wheelDelta));
+    wheelDelta = 0;
+    wheelGestureLocked = true;
+  }, { passive: false });
+
   ["pointermove", "pointerdown", "touchstart"].forEach((eventName) => {
     slideDeck.addEventListener(eventName, showControls, { passive: true });
   });

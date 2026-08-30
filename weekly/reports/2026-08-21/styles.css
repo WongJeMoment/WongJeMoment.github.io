@@ -493,9 +493,14 @@ video {
   right: auto;
   bottom: max(0.75rem, calc((100vh - var(--fullscreen-slide-height)) / 2 + 0.75rem));
   left: 50%;
+  grid-template-columns: repeat(3, 2.5rem);
   width: max-content;
   max-width: calc(var(--fullscreen-slide-width) - 1.5rem);
   transform: translateX(-50%);
+}
+
+.slide-deck:fullscreen .slide-pagination {
+  display: none;
 }
 
 .report-end {
@@ -643,8 +648,8 @@ video {
     right: auto;
     bottom: max(0.4rem, calc((100vh - var(--fullscreen-slide-height)) / 2 + 0.4rem));
     left: 50%;
-    width: calc(var(--fullscreen-slide-width) - 0.8rem);
-    max-width: none;
+    width: max-content;
+    max-width: calc(var(--fullscreen-slide-width) - 0.8rem);
     transform: translateX(-50%);
   }
 
