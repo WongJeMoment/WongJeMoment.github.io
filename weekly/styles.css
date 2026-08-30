@@ -68,16 +68,21 @@ video {
   align-items: center;
 }
 
-.weekly-brand > span {
-  display: grid;
+.weekly-brand > .site-mark {
+  display: block;
   width: 2.4rem;
   height: 2.4rem;
-  color: var(--accent-soft);
-  background: var(--deep-red);
-  border-radius: 50%;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  place-items: center;
+  flex: 0 0 auto;
+  background: #02030a;
+  border-radius: 0.72rem;
+  box-shadow: 0 0.25rem 0.9rem rgba(88, 104, 255, 0.24);
+  object-fit: cover;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.weekly-brand:hover > .site-mark {
+  box-shadow: 0 0.35rem 1.2rem rgba(150, 76, 255, 0.34);
+  transform: rotate(7deg) scale(1.04);
 }
 
 .weekly-brand strong {
