@@ -9,7 +9,7 @@
     />
     <meta name="theme-color" content="#21090d" />
     <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=20260830-page-css" />
+    <link rel="stylesheet" href="styles.css?v=20260830-slide-controls" />
     <title>用双臂系统抓取高动态物体 — 科研周记</title>
   </head>
   <body class="report-page">
@@ -39,11 +39,17 @@
         </div>
       </header>
 
-      <section class="slide-deck" aria-label="组会周报幻灯片">
+      <section class="slide-deck" aria-label="组会周报幻灯片" tabindex="0">
         <div class="deck-toolbar">
-          <p><span data-current-slide>01</span> / 11</p>
+          <button class="deck-step-button" type="button" data-slide-prev aria-label="上一页">
+            <span aria-hidden="true">←</span><b>上一页</b>
+          </button>
+          <p aria-live="polite"><span data-current-slide>01</span> / 11</p>
           <strong>PRESENTATION VIEW</strong>
           <button type="button" data-fullscreen>全屏浏览</button>
+          <button class="deck-step-button" type="button" data-slide-next aria-label="下一页">
+            <b>下一页</b><span aria-hidden="true">→</span>
+          </button>
         </div>
 
         <div class="slide-stack">
@@ -55,6 +61,21 @@
                 width="2001"
                 height="1125"
               />
+              <a
+                class="slide-qr-card"
+                href="https://wongjemoment.github.io/weekly/reports/2026-08-21/"
+                target="_blank"
+                rel="noopener"
+                aria-label="打开当前科研周报网页"
+              >
+                <img
+                  src="qr-report.svg"
+                  alt="扫码打开当前科研周报网页"
+                  width="148"
+                  height="148"
+                />
+                <span><small>SCAN TO VIEW</small><strong>扫码在线浏览</strong></span>
+              </a>
             </div>
             <footer><span>01</span><p>封面</p></footer>
           </article>
@@ -279,6 +300,16 @@
             <footer><span>11</span><p>Planning</p></footer>
           </article>
         </div>
+
+        <nav class="slide-controls" aria-label="幻灯片翻页">
+          <button type="button" data-slide-prev>
+            <span aria-hidden="true">←</span> 上一页
+          </button>
+          <div class="slide-pagination" data-slide-pagination aria-label="选择幻灯片页码"></div>
+          <button type="button" data-slide-next>
+            下一页 <span aria-hidden="true">→</span>
+          </button>
+        </nav>
       </section>
 
       <footer class="report-end">
@@ -292,6 +323,6 @@
       <p>© <span id="year">2026</span></p>
     </footer>
 
-    <script src="../../script.js?v=20260830-2"></script>
+    <script src="../../script.js?v=20260830-slide-controls"></script>
   </body>
 </html>

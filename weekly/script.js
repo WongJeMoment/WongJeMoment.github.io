@@ -34,20 +34,89 @@ if (monthLinks.length && monthSections.length) {
 
 const slideCounter = document.querySelector("[data-current-slide]");
 const slides = Array.from(document.querySelectorAll(".ppt-slide"));
+const slideDeck = document.querySelector(".slide-deck");
+const slidePreviousButtons = Array.from(document.querySelectorAll("[data-slide-prev]"));
+const slideNextButtons = Array.from(document.querySelectorAll("[data-slide-next]"));
+const slidePagination = document.querySelector("[data-slide-pagination]");
 
-if (slideCounter && slides.length) {
-  const slideObserver = new IntersectionObserver(
-    (entries) => {
-      const current = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+if (slideDeck && slideCounter && slidePagination && slides.length) {
+  let currentSlideIndex = 0;
+  const pageButtons = slides.map((slide, index) => {
+    const button = document.createElement("button");
+    const pageNumber = String(index + 1).padStart(2, "0");
+    const pageTitle = slide.querySelector("footer p")?.textContent || `第 ${index + 1} 页`;
 
-      if (current) slideCounter.textContent = current.target.dataset.slideNumber;
-    },
-    { rootMargin: "-18% 0px -52%", threshold: [0.1, 0.45, 0.75] },
-  );
+    button.type = "button";
+    button.textContent = pageNumber;
+    button.setAttribute("aria-label", `打开第 ${index + 1} 页：${pageTitle}`);
+    button.addEventListener("click", () => showSlide(index));
+    slidePagination.append(button);
+    return button;
+  });
 
-  slides.forEach((slide) => slideObserver.observe(slide));
+  function pauseSlideMedia(slide) {
+    slide.querySelectorAll("video").forEach((video) => video.pause());
+  }
+
+  function playSlideAnimations(slide) {
+    slide.querySelectorAll("video.ppt-animation").forEach((video) => {
+      video.play().catch(() => {});
+    });
+  }
+
+  function showSlide(requestedIndex, { updateHash = true } = {}) {
+    const nextIndex = Math.min(Math.max(requestedIndex, 0), slides.length - 1);
+    currentSlideIndex = nextIndex;
+
+    slides.forEach((slide, index) => {
+      const isActive = index === currentSlideIndex;
+      slide.hidden = !isActive;
+      slide.classList.toggle("is-active", isActive);
+      slide.setAttribute("aria-hidden", isActive ? "false" : "true");
+
+      if (isActive) playSlideAnimations(slide);
+      else pauseSlideMedia(slide);
+    });
+
+    pageButtons.forEach((button, index) => {
+      if (index === currentSlideIndex) button.setAttribute("aria-current", "page");
+      else button.removeAttribute("aria-current");
+    });
+
+    slideCounter.textContent = slides[currentSlideIndex].dataset.slideNumber;
+    slidePreviousButtons.forEach((button) => {
+      button.disabled = currentSlideIndex === 0;
+    });
+    slideNextButtons.forEach((button) => {
+      button.disabled = currentSlideIndex === slides.length - 1;
+    });
+
+    if (updateHash) {
+      const activeSlide = slides[currentSlideIndex];
+      history.replaceState(null, "", `${location.pathname}${location.search}#${activeSlide.id}`);
+    }
+  }
+
+  slidePreviousButtons.forEach((button) => {
+    button.addEventListener("click", () => showSlide(currentSlideIndex - 1));
+  });
+  slideNextButtons.forEach((button) => {
+    button.addEventListener("click", () => showSlide(currentSlideIndex + 1));
+  });
+
+  slideDeck.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showSlide(currentSlideIndex - 1);
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showSlide(currentSlideIndex + 1);
+    }
+  });
+
+  slideDeck.classList.add("is-slide-mode");
+  const hashIndex = slides.findIndex((slide) => `#${slide.id}` === window.location.hash);
+  showSlide(hashIndex >= 0 ? hashIndex : 0, { updateHash: false });
 }
 
 document.querySelectorAll("video[controls]").forEach((video) => {
@@ -59,7 +128,6 @@ document.querySelectorAll("video[controls]").forEach((video) => {
 });
 
 const fullscreenButton = document.querySelector("[data-fullscreen]");
-const slideDeck = document.querySelector(".slide-deck");
 
 if (fullscreenButton && slideDeck && document.fullscreenEnabled) {
   fullscreenButton.addEventListener("click", async () => {
