@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Wong Je 的科研周记，记录机器人感知、事件视觉与具身智能方向的组会周报。"
+    />
+    <meta name="theme-color" content="#21090d" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>科研周记 — Wong Je</title>
+  </head>
+  <body class="journal-home">
+    <header class="weekly-nav">
+      <a class="weekly-brand" href="./" aria-label="科研周记首页">
+        <span>WJ</span>
+        <strong>RESEARCH WEEKLY</strong>
+      </a>
+      <nav>
+        <a href="#archive">周报归档</a>
+        <a class="back-portfolio" href="../">返回主页 <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="weekly-hero">
+        <div class="weekly-hero-copy">
+          <p class="weekly-eyebrow">RESEARCH NOTES · ROBOTICS</p>
+          <h1>科研周记<span>。</span></h1>
+          <p>
+            用可视化的方式记录每周组会、论文阅读、实验进展和下一步计划。
+            从问题出发，保留思考的过程，也记录系统真正跑起来的时刻。
+          </p>
+          <a class="weekly-button" href="#archive">查看最新周报 <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <div class="weekly-hero-visual" aria-hidden="true">
+          <div class="weekly-orbit"></div>
+          <img src="assets/2026-08-21/hero.png" alt="" width="600" height="320" />
+          <span class="weekly-stamp">WEEK<br />01</span>
+        </div>
+      </section>
+
+      <section class="weekly-stats" aria-label="周记统计">
+        <div><strong>01</strong><span>已发布周报</span></div>
+        <div><strong>11</strong><span>原始幻灯片</span></div>
+        <div><strong>08</strong><span>实验媒体</span></div>
+        <div><strong>2026</strong><span>记录开始</span></div>
+      </section>
+
+      <section class="archive" id="archive">
+        <div class="archive-heading">
+          <div>
+            <p class="section-index">01 / ARCHIVE</p>
+            <h2>组会周报</h2>
+          </div>
+          <p>内容由组会 PPT 转换为 HTML，支持视频播放与移动端阅读。</p>
+        </div>
+
+        <a class="weekly-report-card" href="reports/2026-08-21/">
+          <div class="report-card-cover">
+            <img
+              src="assets/2026-08-21/hero.png"
+              alt="双臂系统抓取高动态物体示意图"
+              width="600"
+              height="320"
+            />
+            <span>最新一期</span>
+            <strong>01</strong>
+          </div>
+          <div class="report-card-content">
+            <div class="report-card-meta">
+              <time datetime="2026-08-21">2026.08.21</time>
+              <span>11 SLIDES → HTML</span>
+            </div>
+            <h3>用双臂系统抓取高动态物体</h3>
+            <p>
+              阅读 ICRA 2025 双臂灵巧抓取工作，分析异构智能体强化学习、奖励设计、
+              多物体训练中的数据不平衡，并规划感知—抓取—实机部署路线。
+            </p>
+            <div class="report-card-tags">
+              <span>Robot Learning</span><span>Bimanual Catch</span><span>HAPPO</span>
+            </div>
+            <div class="report-card-action">打开 HTML 周报 <span aria-hidden="true">↗</span></div>
+          </div>
+        </a>
+
+        <div class="archive-placeholder">
+          <span>02</span>
+          <p>下一期周报将在这里继续生长。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="weekly-footer">
+      <p>持续记录，持续构建。</p>
+      <p>© <span id="year">2026</span> Wong Je</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
