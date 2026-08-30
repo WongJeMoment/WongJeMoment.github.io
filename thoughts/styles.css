@@ -121,6 +121,9 @@ a {
   letter-spacing: 0.14em;
 }
 
+
+/* Thoughts archive */
+
 .archive-page {
   width: min(1380px, calc(100% - 3rem));
   margin: 0 auto;
@@ -407,8 +410,7 @@ a {
   margin-top: 1.6rem;
 }
 
-.thought-card-tags span,
-.essay-meta span {
+.thought-card-tags span {
   padding: 0.32rem 0.68rem;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -445,244 +447,6 @@ a {
   margin: 0;
 }
 
-.reading-progress {
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 3px;
-  background: rgba(80, 47, 42, 0.08);
-}
-
-.reading-progress span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--rust);
-  transform: scaleX(0);
-  transform-origin: left;
-  will-change: transform;
-}
-
-.essay {
-  width: min(1120px, calc(100% - 3rem));
-  margin: 0 auto;
-}
-
-.essay-hero {
-  position: relative;
-  min-height: 42rem;
-  padding: clamp(6rem, 12vw, 10rem) min(10vw, 7rem) 6rem 0;
-  overflow: hidden;
-  border-bottom: 1px solid var(--line);
-}
-
-.essay-hero h1 {
-  position: relative;
-  z-index: 2;
-  max-width: 48rem;
-  margin: 1.1rem 0 1.6rem;
-  font-family: var(--serif);
-  font-size: clamp(3.6rem, 7.5vw, 7rem);
-  letter-spacing: -0.075em;
-  line-height: 1.12;
-}
-
-.essay-deck {
-  position: relative;
-  z-index: 2;
-  max-width: 42rem;
-  margin: 0;
-  color: var(--muted);
-  font-family: var(--serif);
-  font-size: clamp(1rem, 1.7vw, 1.25rem);
-}
-
-.essay-meta {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 2rem;
-}
-
-.hero-mark {
-  position: absolute;
-  right: 0;
-  bottom: 3rem;
-  display: grid;
-  width: clamp(12rem, 27vw, 20rem);
-  aspect-ratio: 1;
-  color: rgba(255, 250, 244, 0.9);
-  background: var(--rust-dark);
-  border-radius: 50%;
-  box-shadow: 0 2rem 5rem rgba(104, 44, 40, 0.2);
-  place-items: center;
-}
-
-.hero-mark::before,
-.hero-mark::after {
-  position: absolute;
-  border: 1px solid rgba(255, 250, 244, 0.22);
-  border-radius: 50%;
-  content: "";
-}
-
-.hero-mark::before {
-  width: 72%;
-  height: 72%;
-}
-
-.hero-mark::after {
-  width: 104%;
-  height: 104%;
-  border-color: rgba(104, 44, 40, 0.18);
-}
-
-.hero-mark span {
-  font-family: var(--serif);
-  font-size: clamp(3.2rem, 8vw, 6.5rem);
-}
-
-.hero-mark i {
-  position: absolute;
-  right: 9%;
-  bottom: 18%;
-  width: 0.7rem;
-  height: 0.7rem;
-  background: var(--rose);
-  border-radius: 50%;
-}
-
-.essay-layout {
-  display: grid;
-  grid-template-columns: 13rem minmax(0, 42rem);
-  gap: clamp(3rem, 8vw, 8rem);
-  justify-content: center;
-  padding: 7rem 0 9rem;
-}
-
-.essay-aside {
-  position: sticky;
-  top: 3rem;
-  align-self: start;
-  padding-top: 0.4rem;
-}
-
-.essay-aside p {
-  margin: 0 0 1.5rem;
-  color: var(--rust);
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-}
-
-.essay-aside blockquote {
-  margin: 0;
-  padding-left: 1rem;
-  color: var(--muted);
-  border-left: 1px solid var(--rust);
-  font-family: var(--serif);
-  font-size: 0.88rem;
-}
-
-.essay-body {
-  min-width: 0;
-  font-family: var(--serif);
-  font-size: clamp(1rem, 1.45vw, 1.12rem);
-  line-height: 2.15;
-}
-
-.essay-body p {
-  margin: 0 0 1.8rem;
-}
-
-.essay-body .lead {
-  margin-bottom: 3rem;
-  color: #42302d;
-  font-size: clamp(1.15rem, 1.8vw, 1.38rem);
-  line-height: 2;
-}
-
-.essay-body .lead::first-letter {
-  float: left;
-  margin: 0.12em 0.12em 0 0;
-  color: var(--rust);
-  font-family: var(--serif);
-  font-size: 4.2em;
-  font-weight: 700;
-  line-height: 0.8;
-}
-
-.essay-body h2 {
-  margin: 4.5rem 0 1.6rem;
-  font-size: clamp(1.65rem, 3vw, 2.35rem);
-  letter-spacing: -0.04em;
-}
-
-.pull-quote {
-  position: relative;
-  margin: 4rem -3rem;
-  padding: 3rem;
-  color: var(--paper-light);
-  background: var(--rust-dark);
-  border-radius: 0.5rem;
-  box-shadow: 0 1.5rem 3.5rem rgba(104, 44, 40, 0.16);
-  font-size: clamp(1.45rem, 3vw, 2.1rem);
-  font-weight: 600;
-  line-height: 1.7;
-  text-align: center;
-}
-
-.pull-quote::before {
-  position: absolute;
-  top: -1.7rem;
-  left: 1.2rem;
-  color: var(--rose);
-  font-size: 5rem;
-  content: "“";
-}
-
-.essay-signoff {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-top: 5rem;
-  padding-top: 1.5rem;
-  color: var(--muted);
-  border-top: 1px solid var(--line);
-  font-family: var(--sans);
-  font-size: 0.72rem;
-}
-
-.essay-signoff strong {
-  color: var(--rust);
-  font-family: var(--mono);
-  font-weight: 500;
-}
-
-.essay-end {
-  display: flex;
-  justify-content: space-between;
-  width: min(1120px, calc(100% - 3rem));
-  margin: 0 auto;
-  padding: 0 0 5rem;
-}
-
-.essay-end p {
-  margin: 0;
-  color: var(--rust);
-  font-family: var(--mono);
-  font-size: 0.65rem;
-}
-
-.essay-end a {
-  padding-bottom: 0.2rem;
-  border-bottom: 1px solid var(--ink);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
 
 .thoughts-footer {
   display: flex;
@@ -721,9 +485,7 @@ a {
 
 @media (max-width: 760px) {
   .thoughts-nav,
-  .archive-page,
-  .essay,
-  .essay-end {
+  .archive-page {
     width: min(100% - 2rem, 1380px);
   }
 
@@ -735,7 +497,6 @@ a {
   .thoughts-nav nav {
     gap: 0.5rem;
   }
-
   .archive-shell {
     display: block;
   }
@@ -829,50 +590,9 @@ a {
     font-size: clamp(2.2rem, 12vw, 3.4rem);
   }
 
-  .essay-hero {
-    min-height: 39rem;
-    padding-top: 5rem;
-    padding-right: 0;
-  }
-
-  .essay-hero h1 {
-    font-size: clamp(3.1rem, 15vw, 5rem);
-  }
-
-  .essay-deck {
-    max-width: 90%;
-  }
-
-  .hero-mark {
-    right: -3rem;
-    bottom: 2.5rem;
-    opacity: 0.88;
-  }
-
-  .essay-layout {
-    display: block;
-    padding: 5rem 0 7rem;
-  }
-
-  .essay-aside {
-    position: static;
-    display: none;
-  }
-
-  .pull-quote {
-    margin: 3.5rem 0;
-    padding: 2.5rem 1.5rem;
-  }
-
-  .essay-signoff,
-  .essay-end,
   .thoughts-footer {
     align-items: flex-start;
     flex-direction: column;
-  }
-
-  .essay-end {
-    gap: 1.25rem;
   }
 }
 
