@@ -38,9 +38,12 @@ const slideDeck = document.querySelector(".slide-deck");
 const slidePreviousButtons = Array.from(document.querySelectorAll("[data-slide-prev]"));
 const slideNextButtons = Array.from(document.querySelectorAll("[data-slide-next]"));
 const slidePagination = document.querySelector("[data-slide-pagination]");
+const slideControls = document.querySelector(".slide-controls");
 
 if (slideDeck && slidePagination && slides.length) {
   let currentSlideIndex = 0;
+  let controlsIdleTimer;
+  const controlsIdleDelay = 2800;
   const pageButtons = slides.map((slide, index) => {
     const button = document.createElement("button");
     const pageNumber = String(index + 1).padStart(2, "0");
@@ -53,6 +56,19 @@ if (slideDeck && slidePagination && slides.length) {
     slidePagination.append(button);
     return button;
   });
+
+  function showControls() {
+    if (!slideControls) return;
+    slideDeck.classList.remove("controls-idle");
+    window.clearTimeout(controlsIdleTimer);
+    controlsIdleTimer = window.setTimeout(() => {
+      if (slideControls.querySelector(":focus-visible")) {
+        showControls();
+        return;
+      }
+      slideDeck.classList.add("controls-idle");
+    }, controlsIdleDelay);
+  }
 
   function pauseSlideMedia(slide) {
     slide.querySelectorAll("video").forEach((video) => video.pause());
@@ -95,6 +111,8 @@ if (slideDeck && slidePagination && slides.length) {
       const activeSlide = slides[currentSlideIndex];
       history.replaceState(null, "", `${location.pathname}${location.search}#${activeSlide.id}`);
     }
+
+    showControls();
   }
 
   slidePreviousButtons.forEach((button) => {
@@ -104,14 +122,30 @@ if (slideDeck && slidePagination && slides.length) {
     button.addEventListener("click", () => showSlide(currentSlideIndex + 1));
   });
 
-  slideDeck.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      showSlide(currentSlideIndex - 1);
-    } else if (event.key === "ArrowRight") {
-      event.preventDefault();
-      showSlide(currentSlideIndex + 1);
-    }
+  const previousSlideKeys = new Set(["ArrowLeft", "ArrowUp", "PageUp", "Backspace"]);
+  const nextSlideKeys = new Set(["ArrowRight", "ArrowDown", "PageDown", " ", "Spacebar", "Enter"]);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.target instanceof Element && event.target.closest("input, textarea, select, video, audio, [contenteditable]")) return;
+
+    let requestedIndex;
+    if (previousSlideKeys.has(event.key)) requestedIndex = currentSlideIndex - 1;
+    else if (nextSlideKeys.has(event.key)) requestedIndex = currentSlideIndex + 1;
+    else if (event.key === "Home") requestedIndex = 0;
+    else if (event.key === "End") requestedIndex = slides.length - 1;
+    else return;
+
+    event.preventDefault();
+    showSlide(requestedIndex);
+  });
+
+  ["pointermove", "pointerdown", "touchstart"].forEach((eventName) => {
+    slideDeck.addEventListener(eventName, showControls, { passive: true });
+  });
+  slideControls?.addEventListener("focusin", showControls);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) showControls();
   });
 
   slideDeck.classList.add("is-slide-mode");
