@@ -18,6 +18,41 @@ function updateYear() {
   if (year) year.textContent = new Date().getFullYear().toString();
 }
 
+function initializeQuickFactAnimations() {
+  const facts = Array.from(document.querySelectorAll(".quick-fact"));
+  if (!facts.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const animationTimers = new WeakMap();
+
+  const replay = (fact) => {
+    window.clearTimeout(animationTimers.get(fact));
+    fact.classList.remove("is-animating");
+    void fact.offsetWidth;
+    fact.classList.add("is-animating");
+    animationTimers.set(
+      fact,
+      window.setTimeout(() => fact.classList.remove("is-animating"), 2100),
+    );
+  };
+
+  facts.forEach((fact) => {
+    fact.addEventListener("pointerenter", () => replay(fact));
+    fact.addEventListener("focus", () => replay(fact));
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        facts.forEach((fact, index) => window.setTimeout(() => replay(fact), index * 180));
+        observer.disconnect();
+      });
+    },
+    { threshold: 0.6 },
+  );
+
+  observer.observe(document.querySelector(".quick-facts"));
+}
+
 async function restoreHashPosition() {
   if (!window.location.hash) return;
 
@@ -37,6 +72,7 @@ async function initializeSite() {
   try {
     await Promise.all(Array.from(componentSlots, loadComponent));
     updateYear();
+    initializeQuickFactAnimations();
     await restoreHashPosition();
     document.documentElement.classList.add("site-ready");
   } catch (error) {
