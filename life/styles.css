@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap");
+
+:root {
+  --ink: #25131f;
+  --muted: #78606c;
+  --paper: #fff8ef;
+  --sun: #f6cb74;
+  --coral: #ed8178;
+  --violet: #8167aa;
+  --leaf: #5e927a;
+  --line: rgba(68, 31, 55, 0.17);
+  --sans: "Noto Sans SC", system-ui, sans-serif;
+  --serif: "Noto Serif SC", serif;
+  --mono: "DM Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 87% 8%, rgba(129, 103, 170, 0.18), transparent 28rem),
+    radial-gradient(circle at 12% 42%, rgba(246, 203, 116, 0.2), transparent 24rem),
+    var(--paper);
+  font-family: var(--sans);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.life-nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(1180px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.life-brand,
+.life-nav nav {
+  display: flex;
+  align-items: center;
+}
+
+.life-brand {
+  gap: 0.75rem;
+}
+
+.life-brand > span {
+  display: grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: 50%;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  place-items: center;
+}
+
+.life-brand strong {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+}
+
+.life-nav nav {
+  gap: 1.7rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.life-nav nav > a:first-child:hover {
+  color: var(--coral);
+}
+
+.back-portfolio {
+  padding: 0.55rem 0.95rem;
+  color: var(--paper);
+  background: var(--ink);
+  border-radius: 999px;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.back-portfolio:hover {
+  background: var(--violet);
+  transform: translateY(-1px);
+}
+
+.life-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(18rem, 1.15fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: center;
+  min-height: calc(100vh - 83px);
+  width: min(1180px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 5rem 0;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  color: var(--coral);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+.hero-copy h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(4rem, 8vw, 7rem);
+  letter-spacing: -0.08em;
+  line-height: 1.02;
+}
+
+.hero-copy h1 span {
+  color: var(--coral);
+}
+
+.hero-intro {
+  max-width: 29rem;
+  margin: 1.7rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.life-tags {
+  display: flex;
+  gap: 0.65rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.life-tags li {
+  padding: 0.45rem 0.9rem;
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.color-window {
+  position: relative;
+  min-height: min(36rem, 62vw);
+  overflow: hidden;
+  background: linear-gradient(145deg, #fff1bf, #f6a28a 48%, #a08ac2);
+  border: 1px solid var(--line);
+  border-radius: 48% 52% 42% 58% / 40% 45% 55% 60%;
+  box-shadow: 1.5rem 1.5rem 0 rgba(92, 62, 100, 0.1);
+}
+
+.color-window::after {
+  position: absolute;
+  inset: 1.25rem;
+  border: 1px dashed rgba(37, 19, 31, 0.28);
+  border-radius: inherit;
+  content: "";
+}
+
+.color-window p {
+  position: absolute;
+  z-index: 2;
+  right: 14%;
+  bottom: 10%;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: clamp(1.7rem, 4vw, 3.2rem);
+  letter-spacing: 0.08em;
+  line-height: 0.92;
+}
+
+.color-window strong {
+  color: var(--paper);
+}
+
+.shape {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+}
+
+.shape-sun {
+  top: 10%;
+  left: 10%;
+  width: 35%;
+  aspect-ratio: 1;
+  background: var(--sun);
+}
+
+.shape-coral {
+  top: 27%;
+  left: 30%;
+  width: 48%;
+  aspect-ratio: 1.4;
+  background: var(--coral);
+  border-radius: 42% 58% 65% 35%;
+  transform: rotate(-18deg);
+}
+
+.shape-violet {
+  top: -8%;
+  right: -6%;
+  width: 42%;
+  aspect-ratio: 1;
+  background: var(--violet);
+}
+
+.shape-leaf {
+  bottom: -18%;
+  left: -5%;
+  width: 48%;
+  aspect-ratio: 0.8;
+  background: var(--leaf);
+  border-radius: 80% 20% 70% 30%;
+  transform: rotate(26deg);
+}
+
+.moments {
+  width: min(1180px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 7rem 0 9rem;
+  border-top: 1px solid var(--line);
+}
+
+.moments header p,
+.coming-soon span {
+  margin: 0;
+  color: var(--violet);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+}
+
+.moments h2 {
+  margin: 0.5rem 0 2rem;
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+}
+
+.coming-soon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 10rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px dashed var(--line);
+  border-radius: 1.25rem;
+}
+
+.coming-soon p {
+  margin: 0;
+  color: var(--muted);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem max(1.5rem, calc((100vw - 1180px) / 2));
+  color: rgba(255, 248, 239, 0.68);
+  background: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .life-nav,
+  .life-hero,
+  .moments {
+    width: min(100% - 2rem, 1180px);
+  }
+
+  .life-nav nav > a:first-child {
+    display: none;
+  }
+
+  .life-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 4.5rem 0 6rem;
+  }
+
+  .color-window {
+    min-height: 27rem;
+  }
+
+  .coming-soon,
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

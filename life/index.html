@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Wong Je 的多彩生活：收集研究之外的日常、行走与光影。"
+    />
+    <meta name="theme-color" content="#f6cb74" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css?v=20260830" />
+    <title>多彩生活 — Wong Je</title>
+  </head>
+  <body>
+    <header class="life-nav">
+      <a class="life-brand" href="./" aria-label="多彩生活首页">
+        <span>WJ</span>
+        <strong>COLORFUL LIFE</strong>
+      </a>
+      <nav>
+        <a href="#moments">生活归档</a>
+        <a class="back-portfolio" href="../">返回主页 <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="life-hero" aria-labelledby="life-title">
+        <div class="hero-copy">
+          <p class="eyebrow">OFF THE CLOCK · 日常切片</p>
+          <h1 id="life-title">多彩<br />生活<span>。</span></h1>
+          <p class="hero-intro">在研究之外，收藏行走、相遇、光影，以及每一个值得记住的普通瞬间。</p>
+          <ul class="life-tags" aria-label="内容主题">
+            <li>日常</li>
+            <li>行走</li>
+            <li>光影</li>
+          </ul>
+        </div>
+
+        <div class="color-window" aria-hidden="true">
+          <span class="shape shape-sun"></span>
+          <span class="shape shape-coral"></span>
+          <span class="shape shape-violet"></span>
+          <span class="shape shape-leaf"></span>
+          <p>LIVE<br />IN<br /><strong>COLOR</strong></p>
+        </div>
+      </section>
+
+      <section class="moments" id="moments" aria-labelledby="moments-title">
+        <header>
+          <p>01 / LIFE ARCHIVE</p>
+          <h2 id="moments-title">生活切片</h2>
+        </header>
+        <div class="coming-soon">
+          <span>COMING SOON</span>
+          <p>第一份生活记录正在路上。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>认真研究，也认真生活。</p>
+      <p>© <span id="year">2026</span> Wong Je</p>
+    </footer>
+
+    <script>
+      document.querySelector("#year").textContent = new Date().getFullYear().toString();
+    </script>
+  </body>
+</html>

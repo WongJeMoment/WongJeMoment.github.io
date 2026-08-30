@@ -37,6 +37,9 @@ thoughts/
     日期/
       index.html      单篇随笔
       styles.css      单篇随笔专属样式
+life/
+  index.html          多彩生活归档首页
+  styles.css          多彩生活归档样式
 ```
 
 `index.html` 和 `en.html` 只保留页面外壳。新增或修改内容时，在 `components/zh/` 与
