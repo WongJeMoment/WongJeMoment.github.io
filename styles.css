@@ -101,9 +101,9 @@ img {
   width: 2.25rem;
   height: 2.25rem;
   flex: 0 0 auto;
-  background: #02030a;
+  background: #fff;
   border-radius: 0.7rem;
-  box-shadow: 0 0.2rem 0.75rem rgba(66, 106, 255, 0.2);
+  box-shadow: 0 0.2rem 0.75rem rgba(76, 71, 126, 0.16);
   object-fit: cover;
   transition: box-shadow 180ms ease, transform 180ms ease;
 }
