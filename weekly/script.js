@@ -74,8 +74,8 @@ if (slideDeck && slidePagination && slides.length) {
     slide.querySelectorAll("video").forEach((video) => video.pause());
   }
 
-  function playSlideAnimations(slide) {
-    slide.querySelectorAll("video.ppt-animation").forEach((video) => {
+  function playSlideAutoplayMedia(slide) {
+    slide.querySelectorAll("video[autoplay]").forEach((video) => {
       video.play().catch(() => {});
     });
   }
@@ -90,7 +90,7 @@ if (slideDeck && slidePagination && slides.length) {
       slide.classList.toggle("is-active", isActive);
       slide.setAttribute("aria-hidden", isActive ? "false" : "true");
 
-      if (isActive) playSlideAnimations(slide);
+      if (isActive) playSlideAutoplayMedia(slide);
       else pauseSlideMedia(slide);
     });
 
@@ -187,6 +187,8 @@ if (slideDeck && slidePagination && slides.length) {
 
 document.querySelectorAll("video[controls]").forEach((video) => {
   video.addEventListener("play", () => {
+    if (video.autoplay && video.muted) return;
+
     document.querySelectorAll("video[controls]").forEach((otherVideo) => {
       if (otherVideo !== video) otherVideo.pause();
     });
