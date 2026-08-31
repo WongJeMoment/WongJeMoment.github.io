@@ -301,6 +301,10 @@ video {
   transform: translateY(-4px);
 }
 
+.weekly-report-card + .weekly-report-card {
+  margin-top: 1.5rem;
+}
+
 .report-card-cover {
   position: relative;
   display: grid;
