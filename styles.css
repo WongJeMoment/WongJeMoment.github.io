@@ -113,6 +113,30 @@ img {
   transform: rotate(7deg) scale(1.04);
 }
 
+.brand-copy {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brand-copy strong {
+  font-size: 0.94rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+.brand-copy small {
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.47rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
 nav {
   display: flex;
   gap: clamp(0.85rem, 2.2vw, 2rem);
@@ -2031,6 +2055,10 @@ footer p {
 
 .footer-brand .brand-mark {
   box-shadow: 0 0.25rem 1rem rgba(116, 110, 255, 0.3);
+}
+
+.footer-brand .brand-copy small {
+  color: rgba(244, 239, 236, 0.52);
 }
 
 /* responsive */
