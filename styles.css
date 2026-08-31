@@ -571,27 +571,27 @@ nav > a:not(.nav-contact):not(.language-switch):hover {
 }
 
 .archive-drawer .research-journal-rail {
+  z-index: 4;
+  top: 5.3rem;
+  transform: translateX(0.12rem) rotate(2.5deg) rotateY(-4deg);
+}
+
+.archive-drawer .thoughts-rail {
   z-index: 1;
   top: 0.35rem;
   transform: translateX(0.45rem) rotate(-4deg) rotateY(-7deg);
 }
 
-.archive-drawer .thoughts-rail {
+.archive-drawer .life-rail {
   z-index: 2;
   top: 2rem;
   transform: translateX(0.15rem) rotate(3deg) rotateY(-4deg);
 }
 
-.archive-drawer .life-rail {
+.archive-drawer .favorites-rail {
   z-index: 3;
   top: 3.65rem;
   transform: translateX(0.35rem) rotate(-2deg) rotateY(-5deg);
-}
-
-.archive-drawer .favorites-rail {
-  z-index: 4;
-  top: 5.3rem;
-  transform: translateX(0.12rem) rotate(2.5deg) rotateY(-4deg);
 }
 
 .archive-drawer .research-journal-rail::before,
@@ -660,22 +660,22 @@ nav > a:not(.nav-contact):not(.language-switch):hover {
 
 .archive-drawer:hover .research-journal-rail,
 .archive-drawer:focus-within .research-journal-rail {
-  top: 0.15rem;
+  top: 18.6rem;
 }
 
 .archive-drawer:hover .thoughts-rail,
 .archive-drawer:focus-within .thoughts-rail {
-  top: 6.3rem;
+  top: 0.15rem;
 }
 
 .archive-drawer:hover .life-rail,
 .archive-drawer:focus-within .life-rail {
-  top: 12.45rem;
+  top: 6.3rem;
 }
 
 .archive-drawer:hover .favorites-rail,
 .archive-drawer:focus-within .favorites-rail {
-  top: 18.6rem;
+  top: 12.45rem;
 }
 
 .archive-drawer:hover .archive-card-short,
