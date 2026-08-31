@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Wong Je 的私藏清单：记录真正喜欢并愿意推荐的书籍、电影、音乐与技术。"
+    />
+    <meta name="theme-color" content="#11152c" />
+    <link rel="icon" href="../assets/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css?v=20260831" />
+    <title>私藏清单 — Wong Je</title>
+  </head>
+  <body>
+    <header class="picks-nav">
+      <a class="picks-brand" href="./" aria-label="私藏清单首页">
+        <img class="site-mark" src="../assets/site-mark.webp" alt="" width="96" height="96" />
+        <strong>PERSONAL PICKS</strong>
+      </a>
+      <nav>
+        <a href="#collection">分类浏览</a>
+        <a class="back-portfolio" href="../">返回主页 <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="picks-hero" aria-labelledby="picks-title">
+        <div class="hero-copy">
+          <p class="eyebrow">BOOKS · FILMS · MUSIC · TECH</p>
+          <h1 id="picks-title">私藏<br />清单<span>。</span></h1>
+          <p class="hero-intro">
+            这里不追逐完整，也不负责客观。只留下那些让我停下来、反复回看，
+            或者忍不住想分享给别人的东西。
+          </p>
+          <a class="hero-link" href="#collection">翻开清单 <span aria-hidden="true">↓</span></a>
+        </div>
+
+        <div class="taste-orbit" aria-hidden="true">
+          <span class="orbit-ring ring-one"></span>
+          <span class="orbit-ring ring-two"></span>
+          <span class="orbit-center">PICKS<br /><strong>FOR<br />YOU</strong></span>
+          <span class="orbit-tag tag-books">书页</span>
+          <span class="orbit-tag tag-films">银幕</span>
+          <span class="orbit-tag tag-music">旋律</span>
+          <span class="orbit-tag tag-tech">技术</span>
+        </div>
+      </section>
+
+      <section class="collection" id="collection" aria-labelledby="collection-title">
+        <header class="collection-heading">
+          <div>
+            <p class="section-index">01 / THE COLLECTION</p>
+            <h2 id="collection-title">喜欢的，值得留下。</h2>
+          </div>
+          <p>四种入口，一份持续生长的个人清单。每一条推荐都会写清楚我为什么喜欢它。</p>
+        </header>
+
+        <div class="category-grid">
+          <article class="category-card card-books" id="books">
+            <div class="category-icon icon-books" aria-hidden="true"><span></span></div>
+            <div class="category-number">01</div>
+            <p class="category-kicker">BOOKS / 书页</p>
+            <h3>读过以后，<br />还想再翻一次。</h3>
+            <p class="category-description">小说、随笔、研究与那些改变过一个念头的文字。</p>
+            <span class="category-status">等待第一本书</span>
+          </article>
+
+          <article class="category-card card-films" id="films">
+            <div class="category-icon icon-films" aria-hidden="true"><span></span></div>
+            <div class="category-number">02</div>
+            <p class="category-kicker">FILMS / 银幕</p>
+            <h3>散场之后，<br />画面还没有结束。</h3>
+            <p class="category-description">电影、纪录片、动画，以及值得重新进入的世界。</p>
+            <span class="category-status">等待第一部电影</span>
+          </article>
+
+          <article class="category-card card-music" id="music">
+            <div class="category-icon icon-music" aria-hidden="true"><span></span></div>
+            <div class="category-number">03</div>
+            <p class="category-kicker">MUSIC / 旋律</p>
+            <h3>循环播放，<br />也不会觉得厌倦。</h3>
+            <p class="category-description">专辑、单曲与那些替某段时间留下声音的作品。</p>
+            <span class="category-status">等待第一段旋律</span>
+          </article>
+
+          <article class="category-card card-tech" id="tech">
+            <div class="category-icon icon-tech" aria-hidden="true"><span>&gt;_</span></div>
+            <div class="category-number">04</div>
+            <p class="category-kicker">TECH / 技术</p>
+            <h3>真正好用，<br />也真正值得研究。</h3>
+            <p class="category-description">工具、项目、论文和让我产生“还能这样做”的技术。</p>
+            <span class="category-status">等待第一项技术</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="picks-note" aria-label="收录原则">
+        <p class="section-index">A SMALL RULE / 收录原则</p>
+        <blockquote>不因为流行而加入，<br />只因为喜欢而留下。</blockquote>
+      </section>
+    </main>
+
+    <footer>
+      <p>一份带着偏见，也带着诚意的清单。</p>
+      <p>© <span id="year">2026</span> Wong Je</p>
+    </footer>
+
+    <script>
+      document.querySelector("#year").textContent = new Date().getFullYear().toString();
+    </script>
+  </body>
+</html>

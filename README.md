@@ -42,6 +42,9 @@ life/
   styles.css          多彩生活归档样式
   memories/
     2021-2024/        本科回忆录页面与照片、视频素材
+favorites/
+  index.html          书籍、电影、音乐与技术的私藏清单
+  styles.css          私藏清单页面样式
 ```
 
 `index.html` 和 `en.html` 只保留页面外壳。新增或修改内容时，在 `components/zh/` 与
