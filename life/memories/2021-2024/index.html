@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="memoir-locked">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,10 +10,62 @@
     <meta name="theme-color" content="#25131f" />
     <link rel="icon" href="../../../assets/favicon-white.png" type="image/png" />
     <link rel="apple-touch-icon" href="../../../assets/apple-touch-icon-white.png" />
-    <link rel="stylesheet" href="styles.css?v=20260831-white-mark" />
+    <link rel="stylesheet" href="styles.css?v=20260831-gate-1" />
     <title>本科回忆录 · 2021—2024 — Wong Je</title>
+    <script>
+      (() => {
+        const accessKey = "undergraduate-memoir-access-2021-2024";
+        let hasAccess = false;
+
+        try {
+          hasAccess = sessionStorage.getItem(accessKey) === "granted";
+        } catch (error) {
+          hasAccess = false;
+        }
+
+        document.documentElement.dataset.memoirAccess = hasAccess ? "granted" : "locked";
+        if (hasAccess) document.documentElement.classList.remove("memoir-locked");
+      })();
+    </script>
   </head>
   <body>
+    <section class="memoir-gate" data-memoir-gate aria-labelledby="memoir-gate-title">
+      <div class="memoir-gate-shell">
+        <div class="memoir-gate-preview" aria-hidden="true">
+          <img class="gate-cover-campus" src="assets/memory-24.jpg" alt="" />
+          <img class="gate-cover-friends" src="assets/memory-18.jpg" alt="" />
+          <img class="gate-cover-lab" src="assets/memory-01.jpg" alt="" />
+          <span>2021—2024</span>
+        </div>
+        <div class="memoir-gate-card">
+          <a class="memoir-gate-brand" href="../../" aria-label="返回多彩生活">
+            <img src="../../../assets/site-mark-white.webp" alt="" width="96" height="96" />
+            <span>PRIVATE MEMORY</span>
+          </a>
+          <p class="memoir-gate-kicker">UNDERGRADUATE MEMOIR · 2021—2024</p>
+          <h1 id="memoir-gate-title">本科我的学号？</h1>
+          <p>回答正确后，封面的照片会恢复清晰，并打开这段回忆。</p>
+          <form data-memoir-gate-form>
+            <label for="memoir-password">答案</label>
+            <div class="memoir-gate-input">
+              <input
+                id="memoir-password"
+                name="password"
+                type="password"
+                inputmode="numeric"
+                autocomplete="off"
+                placeholder="请输入学号"
+                required
+              />
+              <button type="submit">打开回忆 <span aria-hidden="true">↗</span></button>
+            </div>
+            <p class="memoir-gate-error" data-memoir-gate-error aria-live="polite"></p>
+          </form>
+          <a class="memoir-gate-back" href="../../">返回多彩生活</a>
+        </div>
+      </div>
+    </section>
+
     <header class="memoir-nav">
       <a class="memoir-brand" href="../../" aria-label="返回多彩生活">
         <img class="site-mark" src="../../../assets/site-mark-white.webp" alt="" width="96" height="96" />
@@ -169,6 +221,6 @@
       <button class="lightbox-step lightbox-next" type="button" aria-label="下一张照片">→</button>
     </dialog>
 
-    <script src="script.js?v=20260830"></script>
+    <script src="script.js?v=20260831-gate-1"></script>
   </body>
 </html>

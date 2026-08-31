@@ -23,6 +23,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html.memoir-locked,
+html.memoir-locked body {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   overflow-x: hidden;
@@ -34,6 +39,275 @@ body {
   font-family: var(--sans);
   line-height: 1.8;
   -webkit-font-smoothing: antialiased;
+}
+
+.memoir-locked body > :not(.memoir-gate) {
+  visibility: hidden;
+}
+
+.memoir-gate {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: none;
+  min-height: 100dvh;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(221, 118, 109, 0.2), transparent 28rem),
+    radial-gradient(circle at 88% 84%, rgba(117, 96, 152, 0.24), transparent 30rem),
+    var(--ink);
+  place-items: center;
+}
+
+.memoir-locked .memoir-gate,
+.memoir-unlocking .memoir-gate {
+  display: grid;
+  visibility: visible;
+}
+
+.memoir-unlocking .memoir-gate {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 440ms ease;
+}
+
+.memoir-gate-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(24rem, 0.92fr);
+  width: min(72rem, 100%);
+  min-height: min(42rem, calc(100dvh - 3rem));
+  overflow: hidden;
+  background: rgba(255, 250, 244, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 1.6rem;
+  box-shadow: 0 2.5rem 8rem rgba(12, 4, 9, 0.5);
+}
+
+.memoir-gate-preview {
+  position: relative;
+  min-height: 34rem;
+  overflow: hidden;
+  background: #13080f;
+}
+
+.memoir-gate-preview::after {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(19, 8, 15, 0.78), transparent 48%),
+    rgba(37, 19, 31, 0.12);
+  content: "";
+}
+
+.memoir-gate-preview img {
+  position: absolute;
+  object-fit: cover;
+  filter: blur(1rem) saturate(0.42) brightness(0.72);
+}
+
+.gate-cover-campus {
+  inset: -4%;
+  width: 108%;
+  height: 108%;
+  transform: scale(1.04);
+}
+
+.gate-cover-friends {
+  z-index: 2;
+  right: 4%;
+  bottom: 7%;
+  width: 47%;
+  aspect-ratio: 4 / 3;
+  border: 0.65rem solid var(--paper-light);
+  transform: rotate(4deg) scale(1.05);
+}
+
+.gate-cover-lab {
+  z-index: 3;
+  top: 7%;
+  right: 9%;
+  width: 38%;
+  aspect-ratio: 4 / 3;
+  border: 0.58rem solid var(--paper-light);
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.memoir-gate-preview > span {
+  position: absolute;
+  z-index: 5;
+  bottom: 1.6rem;
+  left: 1.7rem;
+  color: var(--paper-light);
+  font-family: var(--mono);
+  font-size: clamp(1.3rem, 3vw, 2.6rem);
+  letter-spacing: 0.08em;
+}
+
+.memoir-gate-card {
+  display: flex;
+  padding: clamp(2rem, 5vw, 4.25rem);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.memoir-gate-brand {
+  display: inline-flex;
+  gap: 0.75rem;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: auto;
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.13em;
+}
+
+.memoir-gate-brand img {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: #fff;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(117, 96, 152, 0.2);
+  object-fit: cover;
+}
+
+.memoir-gate-kicker {
+  margin: 3.5rem 0 0;
+  color: var(--coral);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.13em;
+}
+
+.memoir-gate-card h1 {
+  margin: 0.8rem 0 0.8rem;
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 5vw, 4.3rem);
+  letter-spacing: -0.07em;
+  line-height: 1.15;
+}
+
+.memoir-gate-card > p:not(.memoir-gate-kicker) {
+  max-width: 30rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.memoir-gate-card form {
+  margin: 2.2rem 0 1.2rem;
+}
+
+.memoir-gate-card label {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+}
+
+.memoir-gate-input {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.memoir-gate-input:focus-within {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(117, 96, 152, 0.14);
+}
+
+.memoir-gate-input input {
+  min-width: 0;
+  padding: 0.95rem 1rem;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  outline: 0;
+  font: inherit;
+}
+
+.memoir-gate-input button {
+  padding: 0.95rem 1.1rem;
+  color: var(--paper-light);
+  background: var(--ink);
+  border: 0;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: background 160ms ease;
+}
+
+.memoir-gate-input button:hover {
+  background: var(--violet);
+}
+
+.memoir-gate-input button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.memoir-gate-error {
+  min-height: 1.5rem;
+  margin: 0.55rem 0 0;
+  color: var(--coral);
+  font-size: 0.74rem;
+}
+
+.memoir-gate-back {
+  width: fit-content;
+  margin-top: auto;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+@media (max-width: 760px) {
+  .memoir-gate {
+    padding: 0.9rem;
+    place-items: start center;
+  }
+
+  .memoir-gate-shell {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    border-radius: 1.2rem;
+  }
+
+  .memoir-gate-preview {
+    min-height: 14rem;
+  }
+
+  .memoir-gate-card {
+    min-height: 28rem;
+    padding: 2rem 1.35rem;
+  }
+
+  .memoir-gate-brand {
+    margin-bottom: 0;
+  }
+
+  .memoir-gate-kicker {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .memoir-gate-input {
+    grid-template-columns: 1fr;
+  }
+
+  .memoir-gate-input button {
+    width: 100%;
+  }
 }
 
 body::before {

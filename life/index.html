@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="memoir-preview-locked">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,8 +10,26 @@
     <meta name="theme-color" content="#f6cb74" />
     <link rel="icon" href="../assets/favicon-white.png" type="image/png" />
     <link rel="apple-touch-icon" href="../assets/apple-touch-icon-white.png" />
-    <link rel="stylesheet" href="styles.css?v=20260831-white-mark" />
+    <link rel="stylesheet" href="styles.css?v=20260831-memoir-gate-1" />
     <title>多彩生活 — Wong Je</title>
+    <script>
+      (() => {
+        const accessKey = "undergraduate-memoir-access-2021-2024";
+
+        function updateMemoirPreview() {
+          let hasAccess = false;
+          try {
+            hasAccess = sessionStorage.getItem(accessKey) === "granted";
+          } catch (error) {
+            hasAccess = false;
+          }
+          document.documentElement.classList.toggle("memoir-preview-locked", !hasAccess);
+        }
+
+        updateMemoirPreview();
+        window.addEventListener("pageshow", updateMemoirPreview);
+      })();
+    </script>
   </head>
   <body>
     <header class="life-nav">

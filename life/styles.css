@@ -301,6 +301,11 @@ a {
   transition: filter 420ms ease, transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.memoir-preview-locked .memory-feature-collage img,
+.memoir-preview-locked .memory-feature:hover .memory-feature-collage img {
+  filter: blur(1rem) saturate(0.42) brightness(0.78);
+}
+
 .memory-cover-main {
   inset: 0;
   width: 100%;
