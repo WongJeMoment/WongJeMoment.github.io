@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="report-locked">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,10 +10,59 @@
     <meta name="theme-color" content="#21090d" />
     <link rel="icon" href="../../../assets/favicon-white.png" type="image/png" />
     <link rel="apple-touch-icon" href="../../../assets/apple-touch-icon-white.png" />
-    <link rel="stylesheet" href="styles.css?v=20260831-white-mark" />
+    <link rel="stylesheet" href="styles.css?v=20260831-gate-1" />
     <title>用双臂系统抓取高动态物体 — 科研周记</title>
+    <script>
+      (() => {
+        const accessKey = "weekly-report-access-2026-08-21";
+        const qrToken = "9d27bd4e7206e7be157d3ca51325d4b3ece21d09";
+        const url = new URL(window.location.href);
+        let hasAccess = false;
+
+        try {
+          if (url.searchParams.get("access") === qrToken) {
+            sessionStorage.setItem(accessKey, "granted");
+            url.searchParams.delete("access");
+            history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+            hasAccess = true;
+          } else {
+            hasAccess = sessionStorage.getItem(accessKey) === "granted";
+          }
+        } catch (error) {
+          hasAccess = false;
+        }
+
+        document.documentElement.dataset.reportAccess = hasAccess ? "granted" : "locked";
+        if (hasAccess) document.documentElement.classList.remove("report-locked");
+      })();
+    </script>
   </head>
   <body class="report-page">
+    <section class="report-gate" data-report-gate aria-labelledby="report-gate-title">
+      <div class="report-gate-card">
+        <img src="../../../assets/site-mark-white.webp" alt="" width="96" height="96" />
+        <p class="report-gate-kicker">PROTECTED WEEKLY · 2026.08.21</p>
+        <h1 id="report-gate-title">这篇周报需要密码</h1>
+        <p>输入访问密码继续浏览，或使用课件第一页的二维码直接进入。</p>
+        <form data-report-gate-form>
+          <label for="report-password">访问密码</label>
+          <div class="report-gate-input">
+            <input
+              id="report-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="请输入密码"
+              required
+            />
+            <button type="submit">进入周报 <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="report-gate-error" data-report-gate-error aria-live="polite"></p>
+        </form>
+        <a href="../../">返回科研周记归档</a>
+      </div>
+    </section>
+
     <div class="reading-progress" aria-hidden="true"><span></span></div>
 
     <header class="weekly-nav report-nav">
@@ -52,7 +101,7 @@
               />
               <a
                 class="slide-qr-card"
-                href="https://wongjemoment.github.io/weekly/reports/2026-08-21/"
+                href="https://wongjemoment.github.io/weekly/reports/2026-08-21/?access=9d27bd4e7206e7be157d3ca51325d4b3ece21d09"
                 target="_blank"
                 rel="noopener"
                 aria-label="打开当前科研周报网页"
@@ -167,7 +216,7 @@
               <video
                 class="ppt-media ppt-animation"
                 style="--media-x: 64.726%; --media-y: -0.27%; --media-w: 30.423%; --media-h: 30.423%"
-                autoplay
+                data-autoplay
                 muted
                 loop
                 playsinline
@@ -179,7 +228,7 @@
               <video
                 class="ppt-media ppt-animation"
                 style="--media-x: 64.726%; --media-y: 30.986%; --media-w: 30.423%; --media-h: 30.423%"
-                autoplay
+                data-autoplay
                 muted
                 loop
                 playsinline
@@ -191,7 +240,7 @@
               <video
                 class="ppt-media ppt-animation"
                 style="--media-x: 64.507%; --media-y: 62.889%; --media-w: 30.861%; --media-h: 30.861%"
-                autoplay
+                data-autoplay
                 muted
                 loop
                 playsinline
@@ -324,6 +373,7 @@
       <p>© <span id="year">2026</span></p>
     </footer>
 
+    <script src="access.js?v=20260831-gate-1"></script>
     <script src="../../script.js?v=20260830-fullscreen-wheel"></script>
   </body>
 </html>
